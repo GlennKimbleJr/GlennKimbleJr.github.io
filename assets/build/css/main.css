@@ -1,0 +1,51 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);@import url(https://fonts.googleapis.com/css?family=Raleway:800i);body {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#dfe9f3), to(white));
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  font-family: 'Roboto', sans-serif;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.display-4 {
+  font-size: 2.5rem;
+}
+
+.display-5 {
+  font-size: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .display-4 {
+    font-size: 3rem;
+  }
+}
+
+.jumbotron img {
+  max-width: 300px;
+}
+
+.bg-gradient-blue {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(15%, #F8F9FA), color-stop(75%, #9ab7d3));
+  background-image: linear-gradient(to top, #F8F9FA 15%, #9ab7d3 75%);
+}
+
+.list-unstyled li {
+  margin-bottom: 12px;
+  font-size: larger;
+  display: inline-block;
+  margin: 10px;
+  margin-left: 0px;
+}
+
+#blog img {
+  display: block;
+  margin: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
