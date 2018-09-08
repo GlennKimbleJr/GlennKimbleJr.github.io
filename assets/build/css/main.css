@@ -1,11 +1,22 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);@import url(https://fonts.googleapis.com/css?family=Raleway:800i);body {
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);@import url(https://fonts.googleapis.com/css?family=Raleway:800i);body {
   background-image: -webkit-gradient(linear, left bottom, left top, from(#dfe9f3), to(white));
   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  line-height: 35.5px;
+  color: #333333;
 }
 
 a:hover {
   text-decoration: none;
+}
+
+footer a {
+  color: #FF813F;
+}
+
+footer a:hover {
+  color: #FFFFFF;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -35,22 +46,26 @@ h1, h2, h3, h4, h5, h6 {
   background-image: linear-gradient(to top, #F8F9FA 15%, #9ab7d3 75%);
 }
 
-.list-unstyled li {
-  margin-bottom: 12px;
-  font-size: larger;
-  display: inline-block;
-  margin: 10px;
-  margin-left: 0px;
-}
-
 #blog p img {
   display: block;
   margin: 30px;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
 }
 
-.coffee {
-  width: 100%;
-  height: auto;
+.follow {
+  font-size: 34px;
+  line-height: 52px;
+}
+
+.follow a {
+  margin: 15px;
+}
+
+.card {
+  width: 33.3%;
+  min-width: 250px;
 }
