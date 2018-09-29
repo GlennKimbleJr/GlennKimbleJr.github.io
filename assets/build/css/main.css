@@ -1,52 +1,30 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);@import url(https://fonts.googleapis.com/css?family=Raleway:800i);body {
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#dfe9f3), to(white));
-  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
-  font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
-  line-height: 35.5px;
-  color: #333333;
+@import url('https://fonts.googleapis.com/css?family=Lato:700|Raleway');
+
+h1 {
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+a:link {
+    color: #3a90ef;
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
 }
 
 a:hover {
-  text-decoration: none;
+    color: #000000;
+    text-decoration: underline;
+    border-bottom-style: none;
+    padding-bottom: 4px;
 }
 
-footer a {
-  color: #FF813F;
-}
-
-footer a:hover {
-  color: #FFFFFF;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Raleway', sans-serif;
-}
-
-.display-4 {
-  font-size: 2.5rem;
-}
-
-.display-5 {
-  font-size: 2.5rem;
-}
-
-@media (min-width: 768px) {
-  .display-4 {
-    font-size: 3rem;
-  }
-}
-
-.jumbotron img {
-  max-width: 300px;
-}
-
-.bg-gradient-blue {
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(15%, #F8F9FA), color-stop(75%, #9ab7d3));
-  background-image: linear-gradient(to top, #F8F9FA 15%, #9ab7d3 75%);
-}
-
-#blog p img {
+.container p img {
   display: block;
   margin: 30px;
   margin-left: auto;
@@ -56,16 +34,11 @@ h1, h2, h3, h4, h5, h6 {
   height: auto;
 }
 
-.follow {
-  font-size: 34px;
-  line-height: 52px;
+footer {
+    text-align: center;
 }
 
-.follow a {
-  margin: 15px;
-}
-
-.card {
-  width: 33.3%;
-  min-width: 250px;
+#social-media a {
+    border-bottom-style: none;
+    margin: 5px;
 }
