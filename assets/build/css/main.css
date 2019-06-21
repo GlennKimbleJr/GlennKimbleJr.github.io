@@ -1,25 +1,27 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:700|Raleway);h1 {
-  font-family: 'Lato', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Lato:700|Raleway');
+
+h1 {
+    font-family: 'Lato', sans-serif;
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
-  font-size: 20px;
-  line-height: 30px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    line-height: 30px;
 }
 
 a:link {
-  color: #3a90ef;
-  text-decoration: none;
-  border-bottom-width: 1px;
-  border-bottom-style: dotted;
+    color: #3a90ef;
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
 }
 
 a:hover {
-  color: #000000;
-  text-decoration: underline;
-  border-bottom-style: none;
-  padding-bottom: 4px;
+    color: #000000;
+    text-decoration: underline;
+    border-bottom-style: none;
+    padding-bottom: 4px;
 }
 
 .container p img {
@@ -33,10 +35,10 @@ a:hover {
 }
 
 footer {
-  text-align: center;
+    text-align: center;
 }
 
 #social-media a {
-  border-bottom-style: none;
-  margin: 5px;
+    border-bottom-style: none;
+    margin: 5px;
 }
