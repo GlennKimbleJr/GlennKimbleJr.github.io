@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Run Phinx Database Migrations With Codeception | Glenn Kimble Jr</title>
+
+    <!-- Meta Tags Generated via http://heymeta.com -->
+<meta name="description" content="Learn how I run Phinx database migrations with my Codeception test suite.">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Run Phinx Database Migrations With Codeception | Glenn Kimble Jr">
+<meta itemprop="description" content="Learn how I run Phinx database migrations with my Codeception test suite.">
+<meta itemprop="image" content="https://avatars2.githubusercontent.com/u/8341011">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://glennkimble.me/blog/run-phinx-database-migrations-with-codeception">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Run Phinx Database Migrations With Codeception | Glenn Kimble Jr">
+<meta property="og:description" content="Learn how I run Phinx database migrations with my Codeception test suite.">
+<meta property="og:image" content="https://avatars2.githubusercontent.com/u/8341011">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Run Phinx Database Migrations With Codeception | Glenn Kimble Jr">
+<meta name="twitter:description" content="Learn how I run Phinx database migrations with my Codeception test suite.">
+<meta name="twitter:image" content="https://avatars2.githubusercontent.com/u/8341011">
+
+    <!-- Font Awesome's CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/assets/build/css/main.css?id=841dc623aa477435251f">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-dark.min.css">
+</head>
+
+<body class="bg-light text-dark mx-5 mb-5">
+    <div class="container col-md-8 offset-md-2">
+        <ul class="nav nav-pills nav-fill no-underline text-uppercase">
+            <li class="nav-item">
+                <a class="nav-link small active" href="/blog">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link small" href="http://refactoringphp.com" target="_blank">Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link small " href="/projects">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link small " href="/hire-me">Hire Me</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link small" href="https://www.lightningphp.org" target="_blank">
+                    Lightning PHP
+                </a>
+            </li>
+        </ul>
+
+        <div class="row mt-5 mb-5">
+            <div class="col-12 text-center">
+                <a href="/">
+                    <img class="logo" src="https://avatars2.githubusercontent.com/u/8341011">
+                </a>
+
+                <h1 class="no-underline mt-4">
+                    <a href="/">Glenn Kimble Jr</a>
+                </h1>
+            </div>
+        </div>
+
+        <div>
+    <p class="text-muted small mb-0">
+        December 22, 2018 by
+        <a href="mailto:glenn@glennkimble.me">Glenn</a>
+    </p>
+
+    <h2 class="mb-5">Run Phinx Database Migrations With Codeception</h2>
+
+    <p>One of my legacy applications uses a mix of <a href="https://phinx.org/">Phinx</a> to handle my database migrations and <a href="https://codeception.com/">Codeception</a> to handle my acceptance testing suite. However I primarily develop in <a href="https://laravel.com/">Laravel</a> and have gotten a bit spoiled by their easy testing setup. When I run my test suite in Laravel it refreshes my testing database with the latest migrations. I wanted to acheive the same thing with Codeception.</p>
+<p>Codeception gives you the option <a href="https://codeception.com/docs/modules/Db">out of the box</a> to refresh your testing database when you run your test suite using a sql dump. This is convenient but I didn't want to have to create a new dump every time I updated my migrations, I'd rather it just work.</p>
+<p>It took me awhile but after enough digging I found all the information necessary to do this between the docs on both sites, and it's actually fairly easy. So I figured I'd compile the info here for anyone interested.</p>
+<hr />
+<p>Firstly, we want to add a new connection to our <code>enviornments</code> array in our <code>phinx.yml</code> file. I call the connection <code>testing</code> and supply it with the credentials for my testing database.</p>
+<p>Phinx accepts either a <code>phinx.yml</code> file or a <code>phinx.php</code> file. I go the php route so that I can make use of <code>Dotenv</code> for environment variables. You can use whichever format works for you.</p>
+<pre><code class="language-php">&lt;?php
+
+require 'vendor/autoload.php';
+
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv-&gt;load();
+
+return [
+    'paths' =&gt; [
+        'migrations' =&gt; '%%PHINX_CONFIG_DIR%%/db/migrations',
+        'seeds' =&gt; '%%PHINX_CONFIG_DIR%%/db/seeds',
+    ],
+    'environments' =&gt; [
+        'default_database' =&gt; getenv('APP_ENV'),
+        'default_migration_table' =&gt; 'phinxlog',
+        'local' =&gt; [
+            'adapter' =&gt; 'mysql',
+            'host' =&gt; getenv('DB_HOST'),
+            'name' =&gt; getenv('DB_DATABASE'),
+            'user' =&gt; getenv('DB_USERNAME'),
+            'pass' =&gt; getenv('DB_PASSWORD'),
+            'port' =&gt; 3306,
+            'charset' =&gt; 'utf8',
+            'collation' =&gt; 'utf8_unicode_ci',
+        ],
+        'testing' =&gt; [
+            'adapter' =&gt; 'mysql',
+            'host' =&gt; getenv('DB_TESTING_HOST'),
+            'name' =&gt; getenv('DB_TESTING_DATABASE'),
+            'user' =&gt; getenv('DB_TESTING_USERNAME'),
+            'pass' =&gt; getenv('DB_TESTING_PASSWORD'),
+            'port' =&gt; 3306,
+            'charset' =&gt; 'utf8',
+            'collation' =&gt; 'utf8_unicode_ci',
+        ]
+    ],
+];</code></pre>
+<p>In the <code>enviornments</code> array you would probably want to add in another array for production as well. But for the sake of this post all we really need is our testing connection.</p>
+<p>Next you'll want to open up and modify your <code>tests/_support/Helper/Acceptance.php</code> file.</p>
+<pre><code class="language-php">&lt;?php
+
+namespace Helper;
+
+use Phinx\Console\PhinxApplication;
+use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Output\NullOutput;
+
+class Acceptance extends \Codeception\Module
+{
+    public function _before($settings = [])
+    {
+        $app = new PhinxApplication();
+        $app-&gt;setAutoExit(false);
+        $app-&gt;run(new StringInput('rollback -e testing -t 0'), new NullOutput());
+        $app-&gt;run(new StringInput('migrate -e testing'), new NullOutput());
+        $app-&gt;run(new StringInput('seed -e testing'), new NullOutput());
+    }
+}</code></pre>
+<p>The <code>-e testing</code> is the important thing to note here, as it instructs Phinx to use our testing environment we setup. Also noteworthy is the <code>-t 0</code> flag at the end of the rollback command, this tells Phinx to rollback all of your database migrations and start from scratch.</p>
+<hr />
+<p>That's pretty much it. Simple right?</p></div>
+
+<div id="subscribe" class="rounded bg-primary text-white text-center p-4 mt-5">
+    <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <div id="mc_embed_signup_scroll">
+            <h2>Join my mailing list</h2>
+
+            <p class="small mt-4">Subscribe now to stay up to date on whatever cool stuff I'm working on.</p>
+
+            <div class="form-group col-md-8 offset-md-2 mt-0">
+                <input type="email" placeholder="Enter your email address" name="EMAIL" class="required email form-control p-4" id="mce-EMAIL" required>
+            </div>
+
+            <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>
+
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0cbea9b9a2f478ac4ac443fe2_cbc836c645" tabindex="-1" value=""></div>
+
+            <input type="submit" value="Subscribe" name="subscribe" class="m-3 btn btn-lg btn-warning">
+        </div>
+    </form>
+</div>
+    </div>
+
+    <footer class="mt-5">
+        <div id="social-media" class="mb-1">
+    <a href="https://www.twitter.com/GlennKimbleJr" target="_blank"><i class="fab fa-lg fa-twitter"></i></a>
+    <a href="https://www.github.com/GlennKimbleJr" target="_blank"><i class="fab fa-lg fa-github"></i></a>
+</div>
+
+        <span class="small">&copy; 2019 Glenn Kimble Jr</span>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

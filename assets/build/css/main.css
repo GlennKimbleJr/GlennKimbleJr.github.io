@@ -1,17 +1,33 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:700|Raleway');
-
-h1 {
-    font-family: 'Lato', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:700');
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
 
 body {
-    font-family: 'Raleway', sans-serif;
-    font-size: 20px;
-    line-height: 30px;
+    font-family: 'Merriweather', serif;
+    font-size: 16.2px;
+    line-height: 30.54px;
+    letter-spacing: 0.02rem;
 }
 
-a:link {
-    color: #3a90ef;
+p {
+  margin-bottom: 35px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 57.5px;
+}
+
+h2 {
+  font-size: 36px;
+  line-height: 41.4px;
+}
+
+a:link, a:visited, a:active {
+    color: #4A4A4A;
     text-decoration: none;
     border-bottom-width: 1px;
     border-bottom-style: dotted;
@@ -41,4 +57,24 @@ footer {
 #social-media a {
     border-bottom-style: none;
     margin: 5px;
+}
+
+pre {
+  font-family: monospace,monospace;
+  font-size: .75em;
+}
+
+pre code {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+}
+
+.no-underline a:link {
+    border-bottom-width: 0px;
 }
