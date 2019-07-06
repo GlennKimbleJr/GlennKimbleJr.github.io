@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Glenn Kimble Jr</title>
+    <title>ESLint for Vue.js in Sublime Text 3 | Glenn Kimble Jr</title>
 
     <!-- Meta Tags Generated via http://heymeta.com -->
-<meta name="description" content="Software developer by day. Pro wrestling super nerd by night. I primarily work with PHP and Laravel. Sometimes I like to blog and live stream.">
+<meta name="description" content="How I setup linting tools for Vue.js in Sublime Text 3">
 
 <!-- Google / Search Engine Tags -->
-<meta itemprop="name" content="Glenn Kimble Jr">
-<meta itemprop="description" content="Software developer by day. Pro wrestling super nerd by night. I primarily work with PHP and Laravel. Sometimes I like to blog and live stream.">
+<meta itemprop="name" content="ESLint for Vue.js in Sublime Text 3 | Glenn Kimble Jr">
+<meta itemprop="description" content="How I setup linting tools for Vue.js in Sublime Text 3">
 <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/8341011">
 
 <!-- Facebook Meta Tags -->
-<meta property="og:url" content="https://glennkimble.me">
+<meta property="og:url" content="https://glennkimble.me/blog/eslint-for-vuejs-in-sublime-text-3">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Glenn Kimble Jr">
-<meta property="og:description" content="Software developer by day. Pro wrestling super nerd by night. I primarily work with PHP and Laravel. Sometimes I like to blog and live stream.">
+<meta property="og:title" content="ESLint for Vue.js in Sublime Text 3 | Glenn Kimble Jr">
+<meta property="og:description" content="How I setup linting tools for Vue.js in Sublime Text 3">
 <meta property="og:image" content="https://avatars2.githubusercontent.com/u/8341011">
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Glenn Kimble Jr">
-<meta name="twitter:description" content="Software developer by day. Pro wrestling super nerd by night. I primarily work with PHP and Laravel. Sometimes I like to blog and live stream.">
+<meta name="twitter:title" content="ESLint for Vue.js in Sublime Text 3 | Glenn Kimble Jr">
+<meta name="twitter:description" content="How I setup linting tools for Vue.js in Sublime Text 3">
 <meta name="twitter:image" content="https://avatars2.githubusercontent.com/u/8341011">
 
     <!-- Font Awesome's CDN -->
@@ -73,71 +73,33 @@
             </div>
         </div>
 
-                <div class="row mb-5">
-        <div class="col-12 mt-3 mt-md-0">
-            <p class="text-muted small mb-0">
-                July 6, 2019 by
-                <a href="mailto:glenn@glennkimble.me">Glenn</a>
-            </p>
+        <div>
+    <p class="text-muted small mb-0">
+        July 6, 2019 by
+        <a href="mailto:glenn@glennkimble.me">Glenn</a>
+    </p>
 
-            <h2 class="card-title">
-                <a href="/blog/eslint-for-vuejs-in-sublime-text-3">ESLint for Vue.js in Sublime Text 3</a>
-            </h2>
+    <h2 class="mb-5">ESLint for Vue.js in Sublime Text 3</h2>
 
-            <p class="mt-4 card-text text-muted">
-                How I setup linting tools for Vue.js in Sublime Text 3
-                <a href="/blog/eslint-for-vuejs-in-sublime-text-3">»</a>
-            </p>
-        </div>
-    </div>
-        <div class="row mb-5">
-        <div class="col-12 mt-3 mt-md-0">
-            <p class="text-muted small mb-0">
-                June 21, 2019 by
-                <a href="mailto:glenn@glennkimble.me">Glenn</a>
-            </p>
+    <p>I recently started at a new job that requires me to have linting tools setup in my editor for <a href="https://vuejs.org/">Vue.js</a>.  I was provided with a list of plugins to install, and an example of how to set this up in <a href="https://www.jetbrains.com/phpstorm/">PHPStorm</a>. However my prefered text editor is <a href="https://www.sublimetext.com/">Sublime Text 3</a>, so I was on my own to figure out the setup. </p>
+<p>It turns out it's pretty easy, and the documentation for one of the plugins I needed even explained it. But for the sake of getting a quick and dirty blog post done, I'll compile the info here for you fine folks!</p>
+<p>First things first, we need to install a few plugis:</p>
+<pre><code>yarn add eslint eslint-plugin-vue babel-eslint --dev</code></pre>
+<p>We'll be using <a href="https://github.com/eslint/eslint">ESlint</a> with a <a href="https://vuejs.github.io/eslint-plugin-vue">plugin</a> that allows us to check the <code>&lt;template&gt;</code> and <code>&lt;script&gt;</code> sections of <code>.vue</code> files.</p>
+<p>Next we need to head over to Sublime to install a few packages. Open up command-palette via Cmd/Ctrl+Shift+P and type <code>Package Control: Install Package</code>, search for <a href="http://www.sublimelinter.com">SublimeLinter</a>, and install. Repeat this process for <a href="https://github.com/SublimeLinter/SublimeLinter-eslint">SublimeLinter-eslint
+</a>, and <a href="https://github.com/kufii/Sublime-ESLint-Fix">ESLint Fix</a>.</p>
+<p>Now you'll want to open command-palette (again) and type <code>Preferences: SublimeLinter Settings</code>. Add this to the config on the right side:</p>
+<pre><code class="language-json">"linters": {
+    "eslint": {
+      "selector": "text.html.vue, source.js - meta.attribute-with-value"
+    }
+}</code></pre>
+<p>Finally, you'll want to add a <code>.eslintrc.json</code> to the root directory of any project you're working on. This will tell ESLint what to look for. You can find an example <a href="https://eslint.org/docs/user-guide/formatters/#eslintrc">here</a>.</p>
+<p>That's it! You should now have ESLint running automatically when you open <code>.vue</code> files, displaying any warnings and errors.  </p>
+<p>Open up the command-palette and search for <code>ESLint Fix: Fix this file</code> (or just <code>fix</code>) to fix most of the issues the linter warns you about.</p>
+<p>Happy linting!</p></div>
 
-            <h2 class="card-title">
-                <a href="/blog/listen-to-events-from-pivot-tables-in-laravel">Listen for events fired from pivot tables in Laravel</a>
-            </h2>
-
-            <p class="mt-4 card-text text-muted">
-                The problem is that Laravel doesn’t fire off events on a pivot table. However I was able to solve this with the using method.
-                <a href="/blog/listen-to-events-from-pivot-tables-in-laravel">»</a>
-            </p>
-        </div>
-    </div>
-        <div class="row mb-5">
-        <div class="col-12 mt-3 mt-md-0">
-            <p class="text-muted small mb-0">
-                December 22, 2018 by
-                <a href="mailto:glenn@glennkimble.me">Glenn</a>
-            </p>
-
-            <h2 class="card-title">
-                <a href="/blog/run-phinx-database-migrations-with-codeception">Run Phinx Database Migrations With Codeception</a>
-            </h2>
-
-            <p class="mt-4 card-text text-muted">
-                Learn how I run Phinx database migrations with my Codeception test suite.
-                <a href="/blog/run-phinx-database-migrations-with-codeception">»</a>
-            </p>
-        </div>
-    </div>
-    
-    <div class="mb-5">
-        <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            
-                        <li class="page-item disabled">
-                <a class="page-link" href="#">Next</a>
-            </li>
-                    </ul>
-    </div>
-
-    <div id="subscribe" class="rounded bg-primary text-white text-center p-4 mt-0">
+<div id="subscribe" class="rounded bg-primary text-white text-center p-4 mt-5">
     <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
         <div id="mc_embed_signup_scroll">
             <h2>Join my mailing list</h2>
