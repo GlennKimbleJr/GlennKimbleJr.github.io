@@ -75,3 +75,15 @@ pre code {
 .no-underline a:link {
   border-bottom-width: 0px;
 }
+
+.text-green {
+  color: #5fb469 !important;
+}
+
+.bg-green {
+  background-color: #5fb469;
+}
+
+.nav-link.active {
+  background-color: #5fb469 !important;
+}
