@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Glenn Kimble Jr</title>
+    <title>Implicit Route Model Binding | Glenn Kimble Jr</title>
 
     <!-- Meta Tags Generated via http://heymeta.com -->
-<meta name="description" content="Software developer by day. Pro wrestling super nerd by night. I primarily work with PHP and Laravel. Sometimes I like to blog and/or stream videos.">
+<meta name="description" content="Implicit route model binding was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way.">
 
 <!-- Google / Search Engine Tags -->
-<meta itemprop="name" content="Glenn Kimble Jr">
-<meta itemprop="description" content="Software developer by day. Pro wrestling super nerd by night. I primarily work with PHP and Laravel. Sometimes I like to blog and/or stream videos.">
+<meta itemprop="name" content="Implicit Route Model Binding | Glenn Kimble Jr">
+<meta itemprop="description" content="Implicit route model binding was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way.">
 <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/8341011">
 
 <!-- Facebook Meta Tags -->
-<meta property="og:url" content="https://glennkimble.me">
+<meta property="og:url" content="https://glennkimble.me/blog/implicit-route-model-binding">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Glenn Kimble Jr">
-<meta property="og:description" content="Software developer by day. Pro wrestling super nerd by night. I primarily work with PHP and Laravel. Sometimes I like to blog and/or stream videos.">
+<meta property="og:title" content="Implicit Route Model Binding | Glenn Kimble Jr">
+<meta property="og:description" content="Implicit route model binding was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way.">
 <meta property="og:image" content="https://avatars2.githubusercontent.com/u/8341011">
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Glenn Kimble Jr">
-<meta name="twitter:description" content="Software developer by day. Pro wrestling super nerd by night. I primarily work with PHP and Laravel. Sometimes I like to blog and/or stream videos.">
+<meta name="twitter:title" content="Implicit Route Model Binding | Glenn Kimble Jr">
+<meta name="twitter:description" content="Implicit route model binding was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way.">
 <meta name="twitter:image" content="https://avatars2.githubusercontent.com/u/8341011">
 
     <!-- Font Awesome's CDN -->
@@ -73,70 +73,57 @@
             </div>
         </div>
 
-                <div class="row mb-5">
-        <div class="col-12 mt-3 mt-md-0">
-            <p class="text-muted small mb-0">
-                December 29, 2018 by
-                <a href="mailto:glenn@glennkimble.me">Glenn</a>
-            </p>
+        <div>
+    <p class="text-muted small mb-0">
+        May 5, 2020 by
+        <a href="mailto:glenn@glennkimble.me">Glenn</a>
+    </p>
 
-            <h2 class="card-title">
-                <a href="/blog/2018-year-in-review">2018 Year in Review</a>
-            </h2>
+    <h2 class="mb-5">Implicit Route Model Binding</h2>
 
-            <p class="mt-4 card-text text-muted">
-                As 2018 comes to a close, I&#039;d like to take some time to plan out a few goals for 2019
-                <a href="/blog/2018-year-in-review">»</a>
-            </p>
-        </div>
-    </div>
-        <div class="row mb-5">
-        <div class="col-12 mt-3 mt-md-0">
-            <p class="text-muted small mb-0">
-                December 22, 2018 by
-                <a href="mailto:glenn@glennkimble.me">Glenn</a>
-            </p>
+    <p>A simple refactor and easy win. Implicit <a href="https://laravel.com/docs/routing#route-model-binding">route model binding</a> was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way. Let's take a look at how route model binding can help you clean things up a bit.</p>
+<p>In this example, we'll pretend we have a <code>BlogController</code> with a <code>show</code> method. You would probably have a setup that looks something similar to this:</p>
+<pre><code>// routes/web.php
+Route::get('/blog/{id}', 'BlogController@show')</code></pre>
+<pre><code>// app/Http/Controllers/BlogController
+public function show($id)
+{
+    $blog = Blog::findOrFail($id);
 
-            <h2 class="card-title">
-                <a href="/blog/run-phinx-database-migrations-with-codeception">Run Phinx Database Migrations With Codeception</a>
-            </h2>
+    return view('blog.show', compact('blog'));
+}</code></pre>
+<p>While this is perfecty fine, the reality is Laravel is already wired out of the box to do some of this work for us.  With implicit route model binding we can get rid of that <code>findOrFail</code> and save ourselves a line of code.</p>
+<p>First we'll want to update our route definition, changing the route segment name of <code>id</code> to the name of the variable we ultimately want to use in our controller method. In this case, <code>blog</code> seems to be an appropriate name.</p>
+<pre><code>// routes/web.php
+//Route::get('/blog/{id}', 'BlogController@show')
+Route::get('/blog/{blog}', 'BlogController@show')</code></pre>
+<p>Next, we'll want to update the method signature of our <code>show</code> method, type-hinting the model we're trying to find, and updating the variable name to one that matches our route segment name.</p>
+<pre><code>// app/Http/Controllers/BlogController
+//public function show($id)
+public function show(Blog $blog)
+{
+    //$blog = Blog::findOrFail($id);
+    //
+    return view('blog.show', compact('blog'));
+}</code></pre>
+<p>And that's it! Using implicit route model binding, Laravel will resolve the correct Blog entry for us. Everything still functions the way it did before; looking for a model id that doesn't exist still throws a 404, etc. It's an easy change and lets you remove some code, which is always a plus.</p>
+<h2>Customizing the Key Name</h2>
+<p>Are you looking up your model by a key other than its id? No problem! With the release of Laravel 7.0 it couldn't be more simple. You just need to specify that in the route parameter definition by adding <code>:key</code> to the route segment name.</p>
+<pre><code>// routes/web.php
+//Route::get('/blog/{id}', 'BlogController@show')
+//Route::get('/blog/{blog}', 'BlogController@show')
+Route::get('/blog/{blog:slug}', 'BlogController@show')</code></pre>
+<p>Now if you're stuck on a version of Laravel prior to 7.0, it's still a relatively simple change.  We'll leave our route definition as it was, and instead we'll just add a method to the model that we're wanting to be resolved for us.</p>
+<pre><code>// routes/web.php
+Route::get('/blog/{blog}', 'BlogController@show')</code></pre>
+<pre><code>// app/Blog.php
+public function getRouteKeyName()
+{
+    return 'slug';
+}</code></pre>
+<p>The <code>getRouteKeyName</code> method should return a string; the name of the key you wish to use for lookups.</p></div>
 
-            <p class="mt-4 card-text text-muted">
-                Learn how I run Phinx database migrations with my Codeception test suite.
-                <a href="/blog/run-phinx-database-migrations-with-codeception">»</a>
-            </p>
-        </div>
-    </div>
-        <div class="row mb-5">
-        <div class="col-12 mt-3 mt-md-0">
-            <p class="text-muted small mb-0">
-                March 22, 2018 by
-                <a href="mailto:glenn@glennkimble.me">Glenn</a>
-            </p>
-
-            <h2 class="card-title">
-                <a href="/blog/letter-of-resignation">Letter of Resignation</a>
-            </h2>
-
-            <p class="mt-4 card-text text-muted">
-                Even though I’d been planning this for some time, I was nervous sending off that email
-                <a href="/blog/letter-of-resignation">»</a>
-            </p>
-        </div>
-    </div>
-    
-    <div class="mb-5">
-    <ul class="pagination justify-content-center">
-                <li class="page-item">
-            <a class="page-link" href="/blog" tabindex="-1">Previous</a>
-        </li>
-        
-                <li class="page-item disabled">
-            <a class="page-link" href="#">Next</a>
-        </li>
-            </ul>
-</div>
-    <div id="subscribe" class="rounded bg-green text-white text-center p-4 mt-0">
+<div id="subscribe" class="rounded bg-green text-white text-center p-4 mt-5">
     <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
         <div id="mc_embed_signup_scroll">
             <h2>Join my mailing list</h2>
