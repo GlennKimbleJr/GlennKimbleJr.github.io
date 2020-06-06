@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Using Laravel Assertions in Codeception | Glenn Kimble Jr</title>
+
+    <!-- Meta Tags Generated via http://heymeta.com -->
+<meta name="description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Using Laravel Assertions in Codeception | Glenn Kimble Jr">
+<meta itemprop="description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
+<meta itemprop="image" content="https://avatars2.githubusercontent.com/u/8341011">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://glennkimble.me/blog/using-laravel-assertions-in-codeception">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Using Laravel Assertions in Codeception | Glenn Kimble Jr">
+<meta property="og:description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
+<meta property="og:image" content="https://avatars2.githubusercontent.com/u/8341011">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Using Laravel Assertions in Codeception | Glenn Kimble Jr">
+<meta name="twitter:description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
+<meta name="twitter:image" content="https://avatars2.githubusercontent.com/u/8341011">
+
+    <!-- Font Awesome's CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/assets/build/css/main.css?id=3c49f6ef9104e39146fd">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-dark.min.css">
+</head>
+
+<body class="bg-light text-dark mx-5 mb-5">
+    <div class="container col-md-8 offset-md-2">
+        <ul class="nav nav-pills nav-fill no-underline text-uppercase">
+            <li class="nav-item">
+                <a class="nav-link small " href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link small active" href="/blog">Blog</a>
+            </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link small " href="/screencasts">Screencasts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link small " href="/talks">Talks</a>
+            <li class="nav-item">
+                <a class="nav-link small" href="https://twitter.com/i/events/1256960427436752897" target="_blank">Tips</a>
+            </li>
+        </ul>
+
+        <div class="row mt-5 mb-5">
+            <div class="col-12 text-center">
+                <a href="/">
+                    <img class="logo" src="https://avatars2.githubusercontent.com/u/8341011">
+                </a>
+
+                <h1 class="no-underline mt-4">
+                    <a href="/">Glenn Kimble Jr</a>
+                </h1>
+
+                <hr>
+            </div>
+        </div>
+
+        <div>
+    <p class="text-muted small mb-0">
+        June 5, 2020 by
+        <a href="mailto:glenn@glennkimble.me">Glenn</a>
+    </p>
+
+    <h2 class="mb-5">Using Laravel Assertions in Codeception</h2>
+
+    <p>If you're using <a href="https://codeception.com/">Codeception</a> as a testing framework for your <a href="https://laravel.com/">Laravel</a> app, you may find yourself wanting to use some of the familar Laravel testing assertions that you can find in <code>Illuminate\Testing\TestResponse</code>. In this article, we'll dive into how to do exactly that.</p>
+<h3>Step 1) Getting Setup</h3>
+<p>I assume you're already using both Laravel and Codeception, so I won't go down the road of helping you set those up.  However to make sure we're on the same page; you need to tell Codeception you're using Laravel. </p>
+<p>Install the <code>module-laravel5</code> package and enable the module within your tests suite's yaml file. Let's also add a <code>useLaravel</code> helper method to make interacting with this module easier.</p>
+<pre><code>composer require codeception/module-laravel5 --dev</code></pre>
+<pre><code># tests/functional.suite.yml
+actor: FunctionalTester
+modules:
+    enabled:
+        # add a framework module here
+        - Laravel5:
+              environment_file: .env.testing
+        - \Helper\Functional
+    step_decorators: ~</code></pre>
+<pre><code class="language-php"># tests/_support/Helper/Functional.php
+&lt;?php
+namespace Helper;
+class Functional extends \Codeception\Module
+{
+    public function useLaravel()
+    {
+        return $this-&gt;getModule('Laravel5');
+    }
+}</code></pre>
+<h3>Step 2) Writing Our Test</h3>
+<p>Let's write a test that asserts we can succesfully make a get request to <code>/api/users</code> and verify the response. First let's head over to <code>routes/api.php</code> and add the following:</p>
+<pre><code class="language-php"># routes/api.php
+&lt;?php
+use Illuminate\Support\Facades\Route;
+Route::get('/users', function () {
+    return [
+        'name' =&gt; 'Jeff Lebowski',
+    ];
+});</code></pre>
+<p>If we were to use Laravel's built in test suite, we'd probably write the following feature test:</p>
+<pre><code class="language-php"># tests/Feature/UserApiTest.php
+&lt;?php
+namespace Tests\Feature;
+class UserApiTest extends Tests\TestCase
+{
+    /** @test */
+    public function can_get_users()
+    {
+        $this-&gt;getJson('/api/users')
+            -&gt;assertSuccessful()
+            -&gt;assertJson(['name' =&gt; 'Jeff Lebowski']);
+    }
+}</code></pre>
+<p>How can we replicate this in Codeception? The key is being able to populate an instance of <code>Illuminate\Testing\TestResponse</code>. There are a few steps we need to take to get there.  </p>
+<p>First we'll get an instance of <code>Symfony\Component\BrowserKit\Response</code> by using Codeception's <code>getInternalResponse</code> method.  </p>
+<p>We'll use that to create an instance of <code>Illuminate\Http\Response</code>. </p>
+<p>Finally we'll pass that into <code>Illuminate\Testing\TestResponse</code>.</p>
+<pre><code class="language-php"># tests/_support/Helper/Functional.php
+&lt;?php
+namespace Helper;
+use Illuminate\Testing\TestResponse;
+use Illuminate\Http\Response as IlluminateResponse;
+class Functional extends \Codeception\Module
+{
+    /** @var TestResponse */
+    private $laravelResponse;
+
+    public function useLaravel()
+    {
+        return $this-&gt;getModule('Laravel5');
+    }
+
+    public function getLaravelResponse()
+    {
+        if (! $this-&gt;laravelResponse) {
+            // returns \Symfony\Component\BrowserKit\Response
+            $codeceptionResponse = $this-&gt;useLaravel()-&gt;client-&gt;getInternalResponse();
+
+            $illuminateResponse = new IlluminateResponse(
+                $codeceptionResponse-&gt;getContent(),
+                $codeceptionResponse-&gt;getStatusCode(),
+                $codeceptionResponse-&gt;getHeaders()
+            );
+
+            $this-&gt;laravelResponse = TestResponse::fromBaseResponse($illuminateResponse);
+        }
+
+        return $this-&gt;laravelResponse;
+    }
+}</code></pre>
+<p>We'll use this <code>getLaravelResponse</code> method in our Codeception tests to gain access to a number of familar Laravel assertions such as <code>assertSuccessful</code> or <code>assertJson</code>. </p>
+<p>Let's go ahead and write a new functional test in Codeception.</p>
+<pre><code class="language-php"># tests/functional/UserApiCest.php
+&lt;?php
+class UserApiCest
+{
+    public function canGetUsers(FunctionalTester $I)
+    {
+        $I-&gt;sendAjaxGetRequest('/api/users');
+        $I-&gt;getLaravelResponse()-&gt;assertSuccessful();
+        $I-&gt;getLaravelResponse()-&gt;assertJson(['name' =&gt; 'Jeff Lebowski']);
+    }
+}</code></pre>
+<h3>Step 3) Terminal Feedback</h3>
+<p>So this test passes.  We're succesfully using Laravel assertions. But it's still not perfect.  Let's look at the output we get in our terminal from this test:</p>
+<pre><code>UserApiCest: Can get users
+Signature: UserApiCest:canGetUsers
+Test: tests/functional/UserApiCest.php:canGetUsers
+Scenario --
+ I send ajax get request "/api/users"
+ I get laravel response
+ I get laravel response
+ PASSED</code></pre>
+<p>The feedback from our assertions reads &quot;I get laravel response&quot;, which isn't representative of what we're doing.  To help improve on this let's create some new test helper methods.</p>
+<pre><code class="language-php"># tests/_support/Helper/Functional.php
+    public function assertSuccessful()
+    {
+        $this-&gt;getLaravelResponse()-&gt;assertSuccessful();
+    }
+
+    public function assertJson(array $data, $strict = false)
+    {
+        $this-&gt;getLaravelResponse()-&gt;assertJson($data, $strict);
+    }</code></pre>
+<p>Then we'll update our test to match...</p>
+<pre><code class="language-php"># tests/functional/UserApiCest.php
+&lt;?php
+class UserApiCest
+{
+    public function canGetUsers(FunctionalTester $I)
+    {
+        $I-&gt;sendAjaxGetRequest('/api/users');
+        $I-&gt;assertSuccessful();
+        $I-&gt;assertJson(['name' =&gt; 'Jeff Lebowski']);
+    }
+}</code></pre>
+<p>Our Codeception test now looks and feels similar to our Laravel test. More importantly, the feedback in our terminal is more clear.</p>
+<pre><code>UserApiCest: Can get users
+Signature: UserApiCest:canGetUsers
+Test: tests/functional/UserApiCest.php:canGetUsers
+Scenario --
+ I send ajax get request "/api/users"
+ I assert successful
+ I assert json {"name":"Jeff Lebowski"}
+ PASSED</code></pre></div>
+
+<div id="subscribe" class="rounded bg-green text-white text-center p-4 mt-5">
+    <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <div id="mc_embed_signup_scroll">
+            <h2>Join my mailing list</h2>
+
+            <p class="small mt-4">Subscribe now to stay up to date on whatever cool stuff I'm working on.</p>
+
+            <div class="form-group col-md-8 offset-md-2 mt-0">
+                <input type="email" placeholder="Enter your email address" name="EMAIL" class="required email form-control p-4" id="mce-EMAIL" required>
+            </div>
+
+            <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>
+
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0cbea9b9a2f478ac4ac443fe2_cbc836c645" tabindex="-1" value=""></div>
+
+            <input type="submit" value="Subscribe" name="subscribe" class="m-3 btn btn-lg btn-warning">
+        </div>
+    </form>
+</div>
+
+<div class="text-center">
+    <a href="https://us19.campaign-archive.com/home/?u=0cbea9b9a2f478ac4ac443fe2&id=cbc836c645" target="_blank" class="small">View Past Newsletters</a>
+</div>
+    </div>
+
+    <footer class="mt-5">
+        <div id="social-media" class="mb-1">
+    <a href="https://www.youtube.com/GlennKimbleJr?sub_confirmation=1" target="_blank"><i class="fab fa-lg text-green fa-youtube"></i></a>
+    <a href="https://www.twitter.com/GlennKimbleJr" target="_blank"><i class="fab fa-lg text-green fa-twitter"></i></a>
+    <a href="https://www.github.com/GlennKimbleJr" target="_blank"><i class="fab fa-lg text-green fa-github"></i></a>
+</div>
+        <span class="small">
+            <a href="https://builtwithjigsaw.com/" target="_blank">Built with Jigsaw</a>
+        </span>
+        <br><span class="small">&copy; 2020 Somehow It Works, LLC</span>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142552351-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-142552351-1');
+    </script>
+
+</body>
+</html>
