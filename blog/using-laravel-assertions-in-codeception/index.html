@@ -84,7 +84,7 @@
     <p>If you're using <a href="https://codeception.com/">Codeception</a> as a testing framework for your <a href="https://laravel.com/">Laravel</a> app, you may find yourself wanting to use some of the familar Laravel testing assertions that you can find in <code>Illuminate\Testing\TestResponse</code>. In this article, we'll dive into how to do exactly that.</p>
 <h3>Step 1) Getting Setup</h3>
 <p>I assume you're already using both Laravel and Codeception, so I won't go down the road of helping you set those up.  However to make sure we're on the same page; you need to tell Codeception you're using Laravel. </p>
-<p>Install the <code>module-laravel5</code> package and enable the module within your tests suite's yaml file. Let's also add a <code>useLaravel</code> helper method to make interacting with this module easier.</p>
+<p>Install the <code>module-laravel5</code> package and enable the module within your test suite's yaml file. Let's also add a <code>useLaravel</code> helper method to make interacting with this module easier.</p>
 <pre><code>composer require codeception/module-laravel5 --dev</code></pre>
 <pre><code># tests/functional.suite.yml
 actor: FunctionalTester
@@ -220,7 +220,8 @@ Scenario --
  I send ajax get request "/api/users"
  I assert successful
  I assert json {"name":"Jeff Lebowski"}
- PASSED</code></pre></div>
+ PASSED</code></pre>
+<p>Quick shout out to <a href="https://twitter.com/FatBoyXPC">@FatBoyXPC</a> for figuring this one out.</p></div>
 
 <div id="subscribe" class="rounded bg-green text-white text-center p-4 mt-5">
     <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
