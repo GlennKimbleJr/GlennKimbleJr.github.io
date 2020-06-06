@@ -8,24 +8,24 @@
     <title>Using Laravel Assertions in Codeception | Glenn Kimble Jr</title>
 
     <!-- Meta Tags Generated via http://heymeta.com -->
-<meta name="description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
+<meta name="description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familiar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
 
 <!-- Google / Search Engine Tags -->
 <meta itemprop="name" content="Using Laravel Assertions in Codeception | Glenn Kimble Jr">
-<meta itemprop="description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
+<meta itemprop="description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familiar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
 <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/8341011">
 
 <!-- Facebook Meta Tags -->
 <meta property="og:url" content="https://glennkimble.me/blog/using-laravel-assertions-in-codeception">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Using Laravel Assertions in Codeception | Glenn Kimble Jr">
-<meta property="og:description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
+<meta property="og:description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familiar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
 <meta property="og:image" content="https://avatars2.githubusercontent.com/u/8341011">
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Using Laravel Assertions in Codeception | Glenn Kimble Jr">
-<meta name="twitter:description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
+<meta name="twitter:description" content="If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familiar Laravel testing assertions. In this article, we&#039;ll dive into how to do do exactly that.">
 <meta name="twitter:image" content="https://avatars2.githubusercontent.com/u/8341011">
 
     <!-- Font Awesome's CDN -->
@@ -81,7 +81,7 @@
 
     <h2 class="mb-5">Using Laravel Assertions in Codeception</h2>
 
-    <p>If you're using <a href="https://codeception.com/">Codeception</a> as a testing framework for your <a href="https://laravel.com/">Laravel</a> app, you may find yourself wanting to use some of the familar Laravel testing assertions that you can find in <code>Illuminate\Testing\TestResponse</code>. In this article, we'll dive into how to do exactly that.</p>
+    <p>If you're using <a href="https://codeception.com/">Codeception</a> as a testing framework for your <a href="https://laravel.com/">Laravel</a> app, you may find yourself wanting to use some of the familiar Laravel testing assertions that you can find in <code>Illuminate\Testing\TestResponse</code>. In this article, we'll dive into how to do exactly that.</p>
 <h3>Step 1) Getting Setup</h3>
 <p>I assume you're already using both Laravel and Codeception, so I won't go down the road of helping you set those up.  However to make sure we're on the same page; you need to tell Codeception you're using Laravel. </p>
 <p>Install the <code>module-laravel5</code> package and enable the module within your test suite's yaml file. Let's also add a <code>useLaravel</code> helper method to make interacting with this module easier.</p>
@@ -166,7 +166,7 @@ class Functional extends \Codeception\Module
         return $this-&gt;laravelResponse;
     }
 }</code></pre>
-<p>We'll use this <code>getLaravelResponse</code> method in our Codeception tests to gain access to a number of familar Laravel assertions such as <code>assertSuccessful</code> or <code>assertJson</code>. </p>
+<p>We'll use this <code>getLaravelResponse</code> method in our Codeception tests to gain access to a number of familiar Laravel assertions such as <code>assertSuccessful</code> or <code>assertJson</code>. </p>
 <p>Let's go ahead and write a new functional test in Codeception.</p>
 <pre><code class="language-php"># tests/functional/UserApiCest.php
 &lt;?php
