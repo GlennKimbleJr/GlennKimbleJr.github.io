@@ -81,11 +81,17 @@
 
     <h2 class="mb-5">Using Laravel Assertions in Codeception</h2>
 
-    <p>If you're using <a href="https://codeception.com/">Codeception</a> as a testing framework for your <a href="https://laravel.com/">Laravel</a> app, you may find yourself wanting to use some of the familiar Laravel testing assertions that you can find in <code>Illuminate\Testing\TestResponse</code>. In this article, we'll dive into how to do exactly that.</p>
+    <p>If you're using <a href="https://codeception.com/" title="" target="_blank">Codeception</a> as a testing framework for your <a href="https://laravel.com/" title="" target="_blank">Laravel</a> app, you may find yourself wanting to use some of the familiar Laravel testing assertions that you can find in <code>Illuminate\Testing\TestResponse</code>. In this article, we'll dive into how to do exactly that.</p>
+
 <h3>Step 1) Getting Setup</h3>
-<p>I assume you're already using both Laravel and Codeception, so I won't go down the road of helping you set those up.  However to make sure we're on the same page; you need to tell Codeception you're using Laravel. </p>
+
+<p>I assume you're already using both Laravel and Codeception, so I won't go down the road of helping you set those up.  However to make sure we're on the same page; you need to tell Codeception you're using Laravel.</p>
+
 <p>Install the <code>module-laravel5</code> package and enable the module within your test suite's yaml file. Let's also add a <code>useLaravel</code> helper method to make interacting with this module easier.</p>
-<pre><code>composer require codeception/module-laravel5 --dev</code></pre>
+
+<pre><code>composer require codeception/module-laravel5 --dev
+</code></pre>
+
 <pre><code># tests/functional.suite.yml
 actor: FunctionalTester
 modules:
@@ -94,7 +100,9 @@ modules:
         - Laravel5:
               environment_file: .env.testing
         - \Helper\Functional
-    step_decorators: ~</code></pre>
+    step_decorators: ~
+</code></pre>
+
 <pre><code class="language-php"># tests/_support/Helper/Functional.php
 &lt;?php
 namespace Helper;
@@ -104,9 +112,13 @@ class Functional extends \Codeception\Module
     {
         return $this-&gt;getModule('Laravel5');
     }
-}</code></pre>
+}
+</code></pre>
+
 <h3>Step 2) Writing Our Test</h3>
+
 <p>Let's write a test that asserts we can succesfully make a get request to <code>/api/users</code> and verify the response. First let's head over to <code>routes/api.php</code> and add the following:</p>
+
 <pre><code class="language-php"># routes/api.php
 &lt;?php
 use Illuminate\Support\Facades\Route;
@@ -114,8 +126,11 @@ Route::get('/users', function () {
     return [
         'name' =&gt; 'Jeff Lebowski',
     ];
-});</code></pre>
+});
+</code></pre>
+
 <p>If we were to use Laravel's built in test suite, we'd probably write the following feature test:</p>
+
 <pre><code class="language-php"># tests/Feature/UserApiTest.php
 &lt;?php
 namespace Tests\Feature;
@@ -128,11 +143,17 @@ class UserApiTest extends Tests\TestCase
             -&gt;assertSuccessful()
             -&gt;assertJson(['name' =&gt; 'Jeff Lebowski']);
     }
-}</code></pre>
-<p>How can we replicate this in Codeception? The key is being able to populate an instance of <code>Illuminate\Testing\TestResponse</code>. There are a few steps we need to take to get there.  </p>
-<p>First we'll get an instance of <code>Symfony\Component\BrowserKit\Response</code> by using Codeception's <code>getInternalResponse</code> method.  </p>
-<p>We'll use that to create an instance of <code>Illuminate\Http\Response</code>. </p>
+}
+</code></pre>
+
+<p>How can we replicate this in Codeception? The key is being able to populate an instance of <code>Illuminate\Testing\TestResponse</code>. There are a few steps we need to take to get there.</p>
+
+<p>First we'll get an instance of <code>Symfony\Component\BrowserKit\Response</code> by using Codeception's <code>getInternalResponse</code> method.</p>
+
+<p>We'll use that to create an instance of <code>Illuminate\Http\Response</code>.</p>
+
 <p>Finally we'll pass that into <code>Illuminate\Testing\TestResponse</code>.</p>
+
 <pre><code class="language-php"># tests/_support/Helper/Functional.php
 &lt;?php
 namespace Helper;
@@ -165,9 +186,13 @@ class Functional extends \Codeception\Module
 
         return $this-&gt;laravelResponse;
     }
-}</code></pre>
-<p>We'll use this <code>getLaravelResponse</code> method in our Codeception tests to gain access to a number of familiar Laravel assertions such as <code>assertSuccessful</code> or <code>assertJson</code>. </p>
+}
+</code></pre>
+
+<p>We'll use this <code>getLaravelResponse</code> method in our Codeception tests to gain access to a number of familiar Laravel assertions such as <code>assertSuccessful</code> or <code>assertJson</code>.</p>
+
 <p>Let's go ahead and write a new functional test in Codeception.</p>
+
 <pre><code class="language-php"># tests/functional/UserApiCest.php
 &lt;?php
 class UserApiCest
@@ -178,9 +203,13 @@ class UserApiCest
         $I-&gt;getLaravelResponse()-&gt;assertSuccessful();
         $I-&gt;getLaravelResponse()-&gt;assertJson(['name' =&gt; 'Jeff Lebowski']);
     }
-}</code></pre>
+}
+</code></pre>
+
 <h3>Step 3) Terminal Feedback</h3>
+
 <p>So this test passes.  We're succesfully using Laravel assertions. But it's still not perfect.  Let's look at the output we get in our terminal from this test:</p>
+
 <pre><code>UserApiCest: Can get users
 Signature: UserApiCest:canGetUsers
 Test: tests/functional/UserApiCest.php:canGetUsers
@@ -188,8 +217,11 @@ Scenario --
  I send ajax get request "/api/users"
  I get laravel response
  I get laravel response
- PASSED</code></pre>
-<p>The feedback from our assertions reads &quot;I get laravel response&quot;, which isn't representative of what we're doing.  To help improve on this let's create some new test helper methods.</p>
+ PASSED
+</code></pre>
+
+<p>The feedback from our assertions reads "I get laravel response", which isn't representative of what we're doing.  To help improve on this let's create some new test helper methods.</p>
+
 <pre><code class="language-php"># tests/_support/Helper/Functional.php
     public function assertSuccessful()
     {
@@ -199,8 +231,11 @@ Scenario --
     public function assertJson(array $data, $strict = false)
     {
         $this-&gt;getLaravelResponse()-&gt;assertJson($data, $strict);
-    }</code></pre>
+    }
+</code></pre>
+
 <p>Then we'll update our test to match...</p>
+
 <pre><code class="language-php"># tests/functional/UserApiCest.php
 &lt;?php
 class UserApiCest
@@ -211,8 +246,11 @@ class UserApiCest
         $I-&gt;assertSuccessful();
         $I-&gt;assertJson(['name' =&gt; 'Jeff Lebowski']);
     }
-}</code></pre>
+}
+</code></pre>
+
 <p>Our Codeception test now looks and feels similar to our Laravel test. More importantly, the feedback in our terminal is more clear.</p>
+
 <pre><code>UserApiCest: Can get users
 Signature: UserApiCest:canGetUsers
 Test: tests/functional/UserApiCest.php:canGetUsers
@@ -220,8 +258,11 @@ Scenario --
  I send ajax get request "/api/users"
  I assert successful
  I assert json {"name":"Jeff Lebowski"}
- PASSED</code></pre>
-<p>Quick shout out to <a href="https://twitter.com/FatBoyXPC">@FatBoyXPC</a> for figuring this one out.</p></div>
+ PASSED
+</code></pre>
+
+<p>Quick shout out to <a href="https://twitter.com/FatBoyXPC" title="" target="_blank">@FatBoyXPC</a> for figuring this one out.</p>
+</div>
 
 <div id="subscribe" class="rounded bg-green text-white text-center p-4 mt-5">
     <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>

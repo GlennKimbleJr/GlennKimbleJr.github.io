@@ -81,20 +81,33 @@
 
     <h2 class="mb-5">Listen for events fired from pivot tables in Laravel</h2>
 
-    <p>I was recently tasked with solving an interesting problem for one of my contract clients on their <a href="https://laravel.com">Laravel</a> app.</p>
+    <p>I was recently tasked with solving an interesting problem for one of my contract clients on their <a href="https://laravel.com" title="" target="_blank">Laravel</a> app.</p>
+
 <p>The company was using a polymoprhic pivot table called taggables to manage the relationship between a tag and any one of a number of different models.  However on the taggables table, they had a <code>submitted_by_id</code> field that they wanted to contain the id of the user who attached the tag. It wasn’t working properly and they asked me to fix it.</p>
+
 <p>Most of the code was setup to do something like:</p>
-<pre><code class="language-php"> $post-&gt;tags()-&gt;sync($array_of_tag_ids)</code></pre>
+
+<p><code>php
+ $post-&gt;tags()-&gt;sync($array_of_tag_ids)</code></p>
+
 <p>One way I could of handled it was to provide an associative array where the key was the tag id and the value was an array of attributes to store on the pivot table.</p>
+
 <pre><code class="language-php">$post-&gt;tags()-&gt;sync([
    ‘1’ =&gt; [‘submitted_by_id’ =&gt; auth()-&gt;user()-&gt;id],
    ‘2’ =&gt; [‘submitted_by_id’ =&gt; auth()-&gt;user()-&gt;id],
-]);</code></pre>
-<p>But the problem this would create is that any existing tag would have it’s <code>submitted_by_id</code> changed to the new users id. We wanted to maintain the data of who first attached the tag to the post.  In order to acheive this I would have to get all the current tags, and preform some kind of logic ahead of time to decide who the <code>submitted_by_id</code> should actually be before syncing. </p>
+]);
+</code></pre>
+
+<p>But the problem this would create is that any existing tag would have it’s <code>submitted_by_id</code> changed to the new users id. We wanted to maintain the data of who first attached the tag to the post.  In order to acheive this I would have to get all the current tags, and preform some kind of logic ahead of time to decide who the <code>submitted_by_id</code> should actually be before syncing.</p>
+
 <p>Another problem is that this <code>tags()-&gt;sync()</code> functionality was happening all over a code base that has no test coverage; causing the refactoring process to be somewhat risky.</p>
+
 <p>One way around this is to listen for the events that eloquent fires off <em>(creating, created, updating, updated, etc)</em>, specifically the creating event, and use that to set the <code>submitted_by_id</code> to the authenticated users id.  This way existing tags won’t get updated, but newly created tags will have the propper <code>submitted_by_id</code>.  The problem is that Laravel doesn’t fire off events on a pivot table.</p>
-<p>It turns out, there is a method called <a href="https://laravel.com/docs/5.8/eloquent-relationships#defining-custom-intermediate-table-models">using</a> that lets you define a model for your pivot table to use on the relationship.  This will allow Laravel to start firing off these events, and for us to start listening for them.</p>
+
+<p>It turns out, there is a method called <a href="https://laravel.com/docs/5.8/eloquent-relationships#defining-custom-intermediate-table-models" title="" target="_blank">using</a> that lets you define a model for your pivot table to use on the relationship.  This will allow Laravel to start firing off these events, and for us to start listening for them.</p>
+
 <p>You need make sure that your pivot table model is either extending <code>Illuminate\Database\Eloquent\Relations\MorphPivot</code> or <code>Illuminate\Database\Eloquent\Relations\Pivot</code>.</p>
+
 <pre><code class="language-php">    /**
      * Get all of the tags for the post.
      */
@@ -103,7 +116,9 @@
         return $this-&gt;morphToMany(Tag::class, 'taggable')
             -&gt;using(TaggablePivot::class)
             -&gt;withTimestamps();
-    }</code></pre>
+    }
+</code></pre>
+
 <pre><code class="language-php">&lt;?php
 
 namespace App\Models;
@@ -115,8 +130,11 @@ class TaggablePivot extends MorphPivot
     protected $table = 'taggables';
 
     public $incrementing = true;
-}</code></pre>
-<p>I ended up creating an <a href="https://laravel.com/docs/5.8/eloquent#observers">observer</a> and registering it in <code>AppServiceProvider</code> <em>(this project ended up having a number of other events that needed to be listed for, otherwise I’d of just stuck it in the boot method on the model.)</em></p>
+}
+</code></pre>
+
+<p>I ended up creating an <a href="https://laravel.com/docs/5.8/eloquent#observers" title="" target="_blank">observer</a> and registering it in <code>AppServiceProvider</code> <em>(this project ended up having a number of other events that needed to be listed for, otherwise I’d of just stuck it in the boot method on the model.)</em></p>
+
 <pre><code class="language-php">&lt;?php
 
 namespace App\Providers;
@@ -136,7 +154,9 @@ class AppServiceProvider extends ServiceProvider
     {
         TaggablePivot::observe(TaggablePivotObserver::class);
     }
-}</code></pre>
+}
+</code></pre>
+
 <pre><code class="language-php">&lt;?php
 
 namespace App\Observers;
@@ -156,8 +176,11 @@ class TaggablePivotObserver
         $user = auth()-&gt;user();
 
         $taggablePivot-&gt;submitted_by_id = $user ? $user-&gt;id : 0;
-    }</code></pre>
-<p>Doing this prevented me from having to spend time doing a potentially risky refactor of a lot of untested code, and helped to save a lot of time.</p></div>
+    }
+</code></pre>
+
+<p>Doing this prevented me from having to spend time doing a potentially risky refactor of a lot of untested code, and helped to save a lot of time.</p>
+</div>
 
 <div id="subscribe" class="rounded bg-green text-white text-center p-4 mt-5">
     <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>

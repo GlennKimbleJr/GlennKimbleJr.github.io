@@ -81,12 +81,18 @@
 
     <h2 class="mb-5">Run Phinx Database Migrations With Codeception</h2>
 
-    <p>One of my legacy applications uses a mix of <a href="https://phinx.org/">Phinx</a> to handle my database migrations and <a href="https://codeception.com/">Codeception</a> to handle my acceptance testing suite. However I primarily develop in <a href="https://laravel.com/">Laravel</a> and have gotten a bit spoiled by their easy testing setup. When I run my test suite in Laravel it refreshes my testing database with the latest migrations. I wanted to acheive the same thing with Codeception.</p>
-<p>Codeception gives you the option <a href="https://codeception.com/docs/modules/Db">out of the box</a> to refresh your testing database when you run your test suite using a sql dump. This is convenient but I didn't want to have to create a new dump every time I updated my migrations, I'd rather it just work.</p>
+    <p>One of my legacy applications uses a mix of <a href="https://phinx.org/" title="" target="_blank">Phinx</a> to handle my database migrations and <a href="https://codeception.com/" title="" target="_blank">Codeception</a> to handle my acceptance testing suite. However I primarily develop in <a href="https://laravel.com/" title="" target="_blank">Laravel</a> and have gotten a bit spoiled by their easy testing setup. When I run my test suite in Laravel it refreshes my testing database with the latest migrations. I wanted to acheive the same thing with Codeception.</p>
+
+<p>Codeception gives you the option <a href="https://codeception.com/docs/modules/Db" title="" target="_blank">out of the box</a> to refresh your testing database when you run your test suite using a sql dump. This is convenient but I didn't want to have to create a new dump every time I updated my migrations, I'd rather it just work.</p>
+
 <p>It took me awhile but after enough digging I found all the information necessary to do this between the docs on both sites, and it's actually fairly easy. So I figured I'd compile the info here for anyone interested.</p>
+
 <hr />
+
 <p>Firstly, we want to add a new connection to our <code>enviornments</code> array in our <code>phinx.yml</code> file. I call the connection <code>testing</code> and supply it with the credentials for my testing database.</p>
+
 <p>Phinx accepts either a <code>phinx.yml</code> file or a <code>phinx.php</code> file. I go the php route so that I can make use of <code>Dotenv</code> for environment variables. You can use whichever format works for you.</p>
+
 <pre><code class="language-php">&lt;?php
 
 require 'vendor/autoload.php';
@@ -123,9 +129,13 @@ return [
             'collation' =&gt; 'utf8_unicode_ci',
         ]
     ],
-];</code></pre>
+];
+</code></pre>
+
 <p>In the <code>enviornments</code> array you would probably want to add in another array for production as well. But for the sake of this post all we really need is our testing connection.</p>
+
 <p>Next you'll want to open up and modify your <code>tests/_support/Helper/Acceptance.php</code> file.</p>
+
 <pre><code class="language-php">&lt;?php
 
 namespace Helper;
@@ -144,10 +154,15 @@ class Acceptance extends \Codeception\Module
         $app-&gt;run(new StringInput('migrate -e testing'), new NullOutput());
         $app-&gt;run(new StringInput('seed -e testing'), new NullOutput());
     }
-}</code></pre>
+}
+</code></pre>
+
 <p>The <code>-e testing</code> is the important thing to note here, as it instructs Phinx to use our testing environment we setup. Also noteworthy is the <code>-t 0</code> flag at the end of the rollback command, this tells Phinx to rollback all of your database migrations and start from scratch.</p>
+
 <hr />
-<p>That's pretty much it. Simple right?</p></div>
+
+<p>That's pretty much it. Simple right?</p>
+</div>
 
 <div id="subscribe" class="rounded bg-green text-white text-center p-4 mt-5">
     <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>

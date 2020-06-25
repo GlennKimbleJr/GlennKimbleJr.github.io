@@ -81,27 +81,44 @@
 
     <h2 class="mb-5">ESLint for Vue.js in Sublime Text 3</h2>
 
-    <p>I recently started at a new job that requires me to have linting tools setup in my editor for <a href="https://vuejs.org/">Vue.js</a>.  I was provided with a list of packages to install, and an example of how to set this up in <a href="https://www.jetbrains.com/phpstorm/">PHPStorm</a>. However my prefered text editor is <a href="https://www.sublimetext.com/">Sublime Text 3</a>, so I was on my own to figure out the setup. </p>
+    <p>I recently started at a new job that requires me to have linting tools setup in my editor for <a href="https://vuejs.org/" title="" target="_blank">Vue.js</a>.  I was provided with a list of packages to install, and an example of how to set this up in <a href="https://www.jetbrains.com/phpstorm/" title="" target="_blank">PHPStorm</a>. However my prefered text editor is <a href="https://www.sublimetext.com/" title="" target="_blank">Sublime Text 3</a>, so I was on my own to figure out the setup.</p>
+
 <p>It turns out it's pretty easy, and the documentation for one of the packages even explained most of it. But for the sake of getting a quick and dirty blog post in, I've compiled the info here for you fine people to read.</p>
+
 <p>First things first, we need to install a few things:</p>
-<pre><code>yarn add eslint eslint-plugin-vue babel-eslint --dev</code></pre>
-<p>We'll be using <a href="https://github.com/eslint/eslint">ESlint</a> with a <a href="https://vuejs.github.io/eslint-plugin-vue">plugin</a> that allows us to check the <code>&lt;template&gt;</code> and <code>&lt;script&gt;</code> sections of <code>.vue</code> files and another <a href="https://github.com/babel/babel-eslint">package</a> that lets us lint all valid <a href="https://babeljs.io/">Babel</a> code.</p>
-<p>Next we need to head over to Sublime. Open up command-palette via Cmd/Ctrl+Shift+P and type <code>Package Control: Install Package</code>, search for <a href="http://www.sublimelinter.com">SublimeLinter</a>, and install. We should repeat this process for <a href="https://github.com/SublimeLinter/SublimeLinter-eslint">SublimeLinter-eslint
-</a> and <a href="https://github.com/kufii/Sublime-ESLint-Fix">ESLint Fix</a> as well.</p>
+
+<pre><code>yarn add eslint eslint-plugin-vue babel-eslint --dev
+</code></pre>
+
+<p>We'll be using <a href="https://github.com/eslint/eslint" title="" target="_blank">ESlint</a> with a <a href="https://vuejs.github.io/eslint-plugin-vue" title="" target="_blank">plugin</a> that allows us to check the <code>&lt;template&gt;</code> and <code>&lt;script&gt;</code> sections of <code>.vue</code> files and another <a href="https://github.com/babel/babel-eslint" title="" target="_blank">package</a> that lets us lint all valid <a href="https://babeljs.io/" title="" target="_blank">Babel</a> code.</p>
+
+<p>Next we need to head over to Sublime. Open up command-palette via Cmd/Ctrl+Shift+P and type <code>Package Control: Install Package</code>, search for <a href="http://www.sublimelinter.com" title="" target="_blank">SublimeLinter</a>, and install. We should repeat this process for <a href="https://github.com/SublimeLinter/SublimeLinter-eslint" title="" target="_blank">SublimeLinter-eslint
+</a> and <a href="https://github.com/kufii/Sublime-ESLint-Fix" title="" target="_blank">ESLint Fix</a> as well.</p>
+
 <p>Open up the command-palette (again) and type <code>Preferences: SublimeLinter Settings</code>. We'll need to add this to the config on the right side.</p>
+
 <pre><code class="language-json">"linters": {
     "eslint": {
       "selector": "text.html.vue, source.js - meta.attribute-with-value"
     }
-}</code></pre>
-<p>Now that we're finished up in Sublime, we'll want to add a <code>.eslintrc.js</code> file to the root directory of any project we're working on. This will tell ESLint what to look for. You can find an example <a href="https://eslint.org/docs/user-guide/formatters/#eslintrc">here</a>.</p>
+}
+</code></pre>
+
+<p>Now that we're finished up in Sublime, we'll want to add a <code>.eslintrc.js</code> file to the root directory of any project we're working on. This will tell ESLint what to look for. You can find an example <a href="https://eslint.org/docs/user-guide/formatters/#eslintrc" title="" target="_blank">here</a>.</p>
+
 <p>You may remember from earlier that we installed a package called <code>babel-eslint</code>. To get this working, we simply need to add this to our <code>.eslintrc.js</code> file:</p>
+
 <pre><code>module.exports = {
   parser: "babel-eslint",
-};</code></pre>
-<p>That's it! We should now have ESLint running automatically when we open <code>.vue</code> files, displaying any warnings and errors.  </p>
+};
+</code></pre>
+
+<p>That's it! We should now have ESLint running automatically when we open <code>.vue</code> files, displaying any warnings and errors.</p>
+
 <p>Open up the command-palette and search for <code>ESLint Fix: Fix this file</code> (or just <code>fix</code>) to fix most of the issues the linter warns you about.</p>
-<p>Happy linting!</p></div>
+
+<p>Happy linting!</p>
+</div>
 
 <div id="subscribe" class="rounded bg-green text-white text-center p-4 mt-5">
     <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
