@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>Implicit Route Model Binding | Glenn Kimble Jr</title>
@@ -28,60 +28,47 @@
 <meta name="twitter:description" content="Implicit route model binding was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way.">
 <meta name="twitter:image" content="https://avatars2.githubusercontent.com/u/8341011">
 
-    <!-- Font Awesome's CDN -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <!-- Custom styles for this template -->
-        <link rel="stylesheet" href="/assets/build/assets/main-DgPbyMzP.css">
+        <link rel="stylesheet" href="/assets/build/assets/main-DBQboT00.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-dark.min.css">
 </head>
 
-<body class="bg-light text-dark mx-5 mb-5">
-    <div class="container col-md-8 offset-md-2">
-        <ul class="nav nav-pills nav-fill no-underline text-uppercase">
-            <li class="nav-item">
-                <a class="nav-link small " href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link small active" href="/blog">Blog</a>
-            </li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link small " href="/screencasts">Screencasts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link small " href="/talks">Talks</a>
-            <li class="nav-item">
-                <a class="nav-link small" href="https://twitter.com/i/events/1256960427436752897" target="_blank">Tips</a>
-            </li>
-        </ul>
+<body class="bg-white text-gray-800 antialiased">
 
-        <div class="row mt-5 mb-5">
-            <div class="col-12 text-center">
-                <a href="/">
-                    <img class="logo" src="https://avatars2.githubusercontent.com/u/8341011">
-                </a>
+    <div class="max-w-3xl mx-auto px-6 py-10">
 
-                <h1 class="no-underline mt-4">
-                    <a href="/">Glenn Kimble Jr</a>
-                </h1>
+        <!-- Navigation -->
+        <nav class="flex justify-center gap-8 text-xs font-semibold uppercase tracking-widest mb-12">
+            <a href="/" class="text-gray-400 hover:text-gray-700" style="text-decoration:none;">Home</a>
+            <a href="/blog" class="text-accent border-b-2 border-accent pb-0.5" style="text-decoration:none;">Blog</a>
+            <a href="/talks" class="text-gray-400 hover:text-gray-700" style="text-decoration:none;">Talks</a>
+        </nav>
 
-                <hr>
-            </div>
-        </div>
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <a href="/">
+                <img src="https://avatars2.githubusercontent.com/u/8341011" alt="Glenn Kimble Jr" class="avatar mx-auto mb-5">
+            </a>
+            <h1 class="text-2xl font-bold">
+                <a href="/" class="text-gray-900 hover:text-accent" style="text-decoration:none;">Glenn Kimble Jr</a>
+            </h1>
+            <p class="text-sm text-gray-400 mt-1 tracking-wide">Software Engineer</p>
+        </header>
 
-        <div>
-    <p class="text-muted small mb-0">
-        May 5, 2020 by
-        <a href="mailto:glenn@glennkimble.me">Glenn</a>
-    </p>
+        <hr class="border-gray-100 mb-10">
 
-    <h2 class="mb-5">Implicit Route Model Binding</h2>
+        <!-- Page content -->
+        <main>
+            <article>
+    <header class="mb-8">
+        <p class="text-sm text-gray-400 mb-2">
+            May 5, 2020 &middot;
+            <a href="mailto:glenn@glennkimble.me" class="text-gray-500 hover:text-accent" style="text-decoration:none;">Glenn</a>
+        </p>
+        <h2 class="text-3xl font-bold text-gray-900 leading-tight">Implicit Route Model Binding</h2>
+    </header>
 
-    <p>A simple refactor and easy win. Implicit <a href="https://laravel.com/docs/routing#route-model-binding" target="_blank">route model binding</a> was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way. Let's take a look at how route model binding can help you clean things up a bit.</p>
+    <div class="prose prose-lg max-w-none">
+        <p>A simple refactor and easy win. Implicit <a href="https://laravel.com/docs/routing#route-model-binding" target="_blank">route model binding</a> was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way. Let's take a look at how route model binding can help you clean things up a bit.</p>
 
 <p>In this example, we'll pretend we have a <code>BlogController</code> with a <code>show</code> method. You would probably have a setup that looks something similar to this:</p>
 
@@ -145,68 +132,93 @@ public function getRouteKeyName()
 </code></pre>
 
 <p>The <code>getRouteKeyName</code> method should return a string; the name of the key you wish to use for lookups.</p>
-</div>
+    </div>
+</article>
 
-<div id="subscribe" class="rounded bg-green text-white text-center p-4 mt-5">
-    <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-        <div id="mc_embed_signup_scroll">
-            <h2>Join my mailing list</h2>
+<div class="mt-12 bg-green-50 border border-green-100 rounded-xl p-8 text-center">
+    <h2 class="text-lg font-semibold text-gray-800 mb-1">Join my mailing list</h2>
+    <p class="text-sm text-gray-500 mb-6">Stay up to date on whatever cool stuff I'm working on.</p>
 
-            <p class="small mt-4">Subscribe now to stay up to date on whatever cool stuff I'm working on.</p>
+    <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645"
+          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+          class="validate" target="_blank" novalidate>
 
-            <div class="form-group col-md-8 offset-md-2 mt-0">
-                <input type="email" placeholder="Enter your email address" name="EMAIL" class="required email form-control p-4" id="mce-EMAIL" required>
-            </div>
+        <div id="mc_embed_signup_scroll" class="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
+            <input type="email" placeholder="your@email.com" name="EMAIL"
+                   class="flex-1 px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-accent"
+                   id="mce-EMAIL" required>
 
-            <div id="mce-responses" class="clear">
+            <div id="mce-responses">
                 <div class="response" id="mce-error-response" style="display:none"></div>
                 <div class="response" id="mce-success-response" style="display:none"></div>
             </div>
 
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0cbea9b9a2f478ac4ac443fe2_cbc836c645" tabindex="-1" value=""></div>
+            <!-- Anti-spam honeypot -->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_0cbea9b9a2f478ac4ac443fe2_cbc836c645" tabindex="-1" value="">
+            </div>
 
-            <input type="submit" value="Subscribe" name="subscribe" class="m-3 btn btn-lg btn-warning">
+            <button type="submit" name="subscribe"
+                    class="px-6 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:opacity-90 cursor-pointer">
+                Subscribe
+            </button>
         </div>
     </form>
-</div>
 
-<div class="text-center">
-    <a href="https://us19.campaign-archive.com/home/?u=0cbea9b9a2f478ac4ac443fe2&id=cbc836c645" target="_blank" class="small">View Past Newsletters</a>
+    <a href="https://us19.campaign-archive.com/home/?u=0cbea9b9a2f478ac4ac443fe2&id=cbc836c645"
+       target="_blank" class="text-xs text-gray-400 hover:text-accent mt-4 inline-block">
+        View past newsletters
+    </a>
 </div>
+        </main>
+
     </div>
 
-    <footer class="mt-5">
-        <div id="social-media" class="mb-1">
-    <a href="https://www.youtube.com/GlennKimbleJr?sub_confirmation=1" target="_blank"><i class="fab fa-lg text-green fa-youtube"></i></a>
-    <a href="https://www.twitter.com/GlennKimbleJr" target="_blank"><i class="fab fa-lg text-green fa-twitter"></i></a>
-    <a href="https://www.github.com/GlennKimbleJr" target="_blank"><i class="fab fa-lg text-green fa-github"></i></a>
+    <footer class="py-8 text-center border-t border-gray-100">
+        <div class="flex justify-center gap-5 items-center">
+    <a href="https://www.github.com/GlennKimbleJr" target="_blank" rel="noopener" aria-label="GitHub"
+       class="text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+    </a>
+    <a href="https://www.linkedin.com/in/glennkimblejr/" target="_blank" rel="noopener" aria-label="LinkedIn"
+       class="text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+    </a>
+    <a href="https://www.twitter.com/GlennKimbleJr" target="_blank" rel="noopener" aria-label="Twitter / X"
+       class="text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+    </a>
+    <a href="https://www.youtube.com/GlennKimbleJr?sub_confirmation=1" target="_blank" rel="noopener" aria-label="YouTube"
+       class="text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+    </a>
+    <a href="mailto:glenn@glennkimble.me" aria-label="Email"
+       class="text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+    </a>
 </div>
-        <span class="small">
-            <a href="https://builtwithjigsaw.com/" target="_blank">Built with Jigsaw</a>
-        </span>
-        <br><span class="small">
-            &copy; 2026 <a href="https://www.somehowitworks.com" target="_blank">Somehow It Works, LLC</a>
-        </span>
+        <p class="text-xs text-gray-400 mt-3">&copy; 2026 Glenn Kimble Jr</p>
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-
     <script>hljs.initHighlightingOnLoad();</script>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142552351-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'UA-142552351-1');
     </script>
 
