@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,125 +13,138 @@
 <!-- Google / Search Engine Tags -->
 <meta itemprop="name" content="Glenn Kimble Jr">
 <meta itemprop="description" content="PHP and Laravel software engineer.">
-<meta itemprop="image" content="https://avatars2.githubusercontent.com/u/8341011">
+<meta itemprop="image" content="/assets/images/avatar.jpg">
 
 <!-- Facebook Meta Tags -->
 <meta property="og:url" content="https://glennkimble.me">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Glenn Kimble Jr">
 <meta property="og:description" content="PHP and Laravel software engineer.">
-<meta property="og:image" content="https://avatars2.githubusercontent.com/u/8341011">
+<meta property="og:image" content="/assets/images/avatar.jpg">
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Glenn Kimble Jr">
 <meta name="twitter:description" content="PHP and Laravel software engineer.">
-<meta name="twitter:image" content="https://avatars2.githubusercontent.com/u/8341011">
+<meta name="twitter:image" content="/assets/images/avatar.jpg">
+
+    <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-        <link rel="stylesheet" href="/assets/build/assets/main-Cdj6qUTW.css">
+    <script>const t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}</script>
+        <link rel="stylesheet" href="/assets/build/assets/main-DVJQd2mQ.css">
 </head>
 
-<body class="bg-white text-gray-800 antialiased">
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 antialiased">
 
     <div class="max-w-3xl mx-auto px-6 py-10">
 
         <!-- Navigation -->
-        <nav class="flex justify-center gap-8 text-xs font-semibold uppercase tracking-widest mb-12">
-            <a href="/" class="text-gray-400 hover:text-gray-700" style="text-decoration:none;">Home</a>
+        <nav class="flex justify-center items-center gap-8 text-xs font-semibold uppercase tracking-widest mb-12">
+            <a href="/" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Home</a>
             <a href="/blog" class="text-accent border-b-2 border-accent pb-0.5" style="text-decoration:none;">Blog</a>
-            <a href="/talks" class="text-gray-400 hover:text-gray-700" style="text-decoration:none;">Talks</a>
+            <a href="/talks" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Talks</a>
+            <button id="theme-toggle" aria-label="Toggle dark mode"
+                    class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+                <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+                </svg>
+                <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.415-2.121-2.122zM1 11h3v2H1v-2zm19 0h3v2h-3v-2zM4.929 20.485l-1.414-1.414 2.121-2.121 1.414 1.414-2.121 2.121zM18.364 7.05l-1.414-1.414 2.121-2.121 1.415 1.414-2.122 2.121z"/>
+                </svg>
+            </button>
         </nav>
 
         <!-- Header -->
         <header class="text-center mb-10">
             <a href="/">
-                <img src="https://avatars2.githubusercontent.com/u/8341011" alt="Glenn Kimble Jr" class="avatar mx-auto mb-5">
+                <img src="/assets/images/avatar.jpg" alt="Glenn Kimble Jr" class="avatar mx-auto mb-5">
             </a>
             <h1 class="text-2xl font-bold">
-                <a href="/" class="text-gray-900 hover:text-accent" style="text-decoration:none;">Glenn Kimble Jr</a>
+                <a href="/" class="text-gray-900 dark:text-gray-100 hover:text-accent" style="text-decoration:none;">Glenn Kimble Jr</a>
             </h1>
-            <p class="text-sm text-gray-400 mt-1 tracking-wide">Software Engineer</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 tracking-wide">Software Engineer</p>
         </header>
 
-        <hr class="border-gray-100 mb-10">
+        <hr class="border-gray-100 dark:border-gray-800 mb-10">
 
         <!-- Page content -->
         <main>
             
-<h2 class="text-2xl font-bold text-gray-900 mb-8">Blog</h2>
+<h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8">Blog</h2>
 
-<div class="mb-10 pb-10 border-b border-gray-100 last:border-0">
-    <p class="text-xs text-gray-400 mb-1">June 5, 2020</p>
+<div class="mb-10 pb-10 border-b border-gray-100 dark:border-gray-800 last:border-0">
+    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">June 5, 2020</p>
 
-    <h3 class="text-xl font-semibold text-gray-800 mb-2 leading-snug">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 leading-snug">
         <a href="/blog/using-laravel-assertions-in-codeception" class="hover:text-accent" style="text-decoration:none;">Using Laravel Assertions in Codeception</a>
     </h3>
 
-    <p class="text-gray-500 text-sm leading-relaxed mb-3">If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familiar Laravel testing assertions. In this article, we&#039;ll dive into how to do exactly that.</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-3">If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familiar Laravel testing assertions. In this article, we&#039;ll dive into how to do exactly that.</p>
 
     <a href="/blog/using-laravel-assertions-in-codeception" class="text-sm text-accent font-semibold hover:underline">Read more &rarr;</a>
 </div>
-<div class="mb-10 pb-10 border-b border-gray-100 last:border-0">
-    <p class="text-xs text-gray-400 mb-1">May 5, 2020</p>
+<div class="mb-10 pb-10 border-b border-gray-100 dark:border-gray-800 last:border-0">
+    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">May 5, 2020</p>
 
-    <h3 class="text-xl font-semibold text-gray-800 mb-2 leading-snug">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 leading-snug">
         <a href="/blog/implicit-route-model-binding" class="hover:text-accent" style="text-decoration:none;">Implicit Route Model Binding</a>
     </h3>
 
-    <p class="text-gray-500 text-sm leading-relaxed mb-3">Implicit route model binding was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way.</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-3">Implicit route model binding was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way.</p>
 
     <a href="/blog/implicit-route-model-binding" class="text-sm text-accent font-semibold hover:underline">Read more &rarr;</a>
 </div>
-<div class="mb-10 pb-10 border-b border-gray-100 last:border-0">
-    <p class="text-xs text-gray-400 mb-1">December 25, 2019</p>
+<div class="mb-10 pb-10 border-b border-gray-100 dark:border-gray-800 last:border-0">
+    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">December 25, 2019</p>
 
-    <h3 class="text-xl font-semibold text-gray-800 mb-2 leading-snug">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 leading-snug">
         <a href="/blog/2019-year-in-review" class="hover:text-accent" style="text-decoration:none;">2019 Year in Review</a>
     </h3>
 
-    <p class="text-gray-500 text-sm leading-relaxed mb-3">As 2019 comes to a close, I&#039;d like to take some time to look back on how it all went down.</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-3">As 2019 comes to a close, I&#039;d like to take some time to look back on how it all went down.</p>
 
     <a href="/blog/2019-year-in-review" class="text-sm text-accent font-semibold hover:underline">Read more &rarr;</a>
 </div>
-<div class="mb-10 pb-10 border-b border-gray-100 last:border-0">
-    <p class="text-xs text-gray-400 mb-1">October 10, 2019</p>
+<div class="mb-10 pb-10 border-b border-gray-100 dark:border-gray-800 last:border-0">
+    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">October 10, 2019</p>
 
-    <h3 class="text-xl font-semibold text-gray-800 mb-2 leading-snug">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 leading-snug">
         <a href="/blog/keeping-your-tests-clean" class="hover:text-accent" style="text-decoration:none;">Keeping Your Tests Clean</a>
     </h3>
 
-    <p class="text-gray-500 text-sm leading-relaxed mb-3">It’s no secret that as developers we spend more time reading code than writing code and as such we understand the importance of keeping our code clean. However, one area we tend to fall behind on in this endeavor is our test files.</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-3">It’s no secret that as developers we spend more time reading code than writing code and as such we understand the importance of keeping our code clean. However, one area we tend to fall behind on in this endeavor is our test files.</p>
 
     <a href="/blog/keeping-your-tests-clean" class="text-sm text-accent font-semibold hover:underline">Read more &rarr;</a>
 </div>
-<div class="mb-10 pb-10 border-b border-gray-100 last:border-0">
-    <p class="text-xs text-gray-400 mb-1">July 6, 2019</p>
+<div class="mb-10 pb-10 border-b border-gray-100 dark:border-gray-800 last:border-0">
+    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">July 6, 2019</p>
 
-    <h3 class="text-xl font-semibold text-gray-800 mb-2 leading-snug">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 leading-snug">
         <a href="/blog/eslint-for-vuejs-in-sublime-text-3" class="hover:text-accent" style="text-decoration:none;">ESLint for Vue.js in Sublime Text 3</a>
     </h3>
 
-    <p class="text-gray-500 text-sm leading-relaxed mb-3">How I setup linting tools for Vue.js in Sublime Text 3</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-3">How I setup linting tools for Vue.js in Sublime Text 3</p>
 
     <a href="/blog/eslint-for-vuejs-in-sublime-text-3" class="text-sm text-accent font-semibold hover:underline">Read more &rarr;</a>
 </div>
 
 <div class="flex justify-center gap-3 mt-10">
-            <span class="px-4 py-2 text-sm text-gray-300 border border-gray-100 rounded-lg cursor-not-allowed">
+            <span class="px-4 py-2 text-sm text-gray-300 dark:text-gray-600 border border-gray-100 dark:border-gray-800 rounded-lg cursor-not-allowed">
             &larr; Newer
         </span>
     
-            <a href="/blog/2" class="px-4 py-2 text-sm text-gray-600 border border-gray-200 rounded-lg hover:border-accent hover:text-accent transition-colors">
+            <a href="/blog/2" class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-accent hover:text-accent transition-colors">
             Older &rarr;
         </a>
     </div>
 
-<div class="mt-12 bg-green-50 border border-green-100 rounded-xl p-8 text-center">
-    <h2 class="text-lg font-semibold text-gray-800 mb-1">Join my mailing list</h2>
-    <p class="text-sm text-gray-500 mb-6">Stay up to date on whatever cool stuff I'm working on.</p>
+<div class="mt-12 bg-green-50 dark:bg-green-950 border border-green-100 dark:border-green-900 rounded-xl p-8 text-center">
+    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">Join my mailing list</h2>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Stay up to date on whatever cool stuff I'm working on.</p>
 
     <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645"
           method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
@@ -139,7 +152,7 @@
 
         <div id="mc_embed_signup_scroll" class="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
             <input type="email" placeholder="your@email.com" name="EMAIL"
-                   class="flex-1 px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-accent"
+                   class="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 rounded-lg text-sm focus:outline-none focus:border-accent"
                    id="mce-EMAIL" required>
 
             <div id="mce-responses">
@@ -160,7 +173,7 @@
     </form>
 
     <a href="https://us19.campaign-archive.com/home/?u=0cbea9b9a2f478ac4ac443fe2&id=cbc836c645"
-       target="_blank" class="text-xs text-gray-400 hover:text-accent mt-4 inline-block">
+       target="_blank" class="text-xs text-gray-500 dark:text-gray-400 hover:text-accent mt-4 inline-block">
         View past newsletters
     </a>
 </div>
@@ -169,43 +182,43 @@
 
     </div>
 
-    <footer class="py-8 text-center border-t border-gray-100">
+    <footer class="py-8 text-center border-t border-gray-100 dark:border-gray-800">
         <div class="flex justify-center gap-5 items-center">
     <a href="https://www.github.com/GlennKimbleJr" target="_blank" rel="noopener" aria-label="GitHub"
-       class="text-gray-400 hover:text-accent transition-colors">
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
         </svg>
     </a>
     <a href="https://www.linkedin.com/in/glennkimblejr/" target="_blank" rel="noopener" aria-label="LinkedIn"
-       class="text-gray-400 hover:text-accent transition-colors">
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
         </svg>
     </a>
     <a href="https://www.twitter.com/GlennKimbleJr" target="_blank" rel="noopener" aria-label="Twitter / X"
-       class="text-gray-400 hover:text-accent transition-colors">
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
     </a>
     <a href="https://www.youtube.com/GlennKimbleJr?sub_confirmation=1" target="_blank" rel="noopener" aria-label="YouTube"
-       class="text-gray-400 hover:text-accent transition-colors">
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
         </svg>
     </a>
     <a href="mailto:glennkimble@yahoo.com" aria-label="Email"
-       class="text-gray-400 hover:text-accent transition-colors">
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
             <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
         </svg>
     </a>
 </div>
-        <p class="text-xs text-gray-400 mt-3">&copy; 2026 Glenn Kimble Jr &middot; Built with <a href="https://jigsaw.tighten.com" target="_blank" class="hover:text-accent">Jigsaw</a></p>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">&copy; 2026 Glenn Kimble Jr &middot; Built with <a href="https://jigsaw.tighten.com" target="_blank" class="hover:text-accent">Jigsaw</a></p>
     </footer>
 
-    <script type="module" src="/assets/build/assets/main-DUw1FKUg.js"></script>
+    <script type="module" src="/assets/build/assets/main-BjTzDYbx.js"></script>
 
 </body>
 </html>
