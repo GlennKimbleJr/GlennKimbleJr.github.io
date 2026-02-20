@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="/assets/build/css/main.css?id=3c49f6ef9104e39146fd">
+        <link rel="stylesheet" href="/assets/build/assets/main-DgPbyMzP.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/atom-one-dark.min.css">
 </head>
 
@@ -81,7 +81,7 @@
 
     <h2 class="mb-5">Listen for events fired from pivot tables in Laravel</h2>
 
-    <p>I was recently tasked with solving an interesting problem for one of my contract clients on their <a href="https://laravel.com" title="" target="_blank">Laravel</a> app.</p>
+    <p>I was recently tasked with solving an interesting problem for one of my contract clients on their <a href="https://laravel.com" target="_blank">Laravel</a> app.</p>
 
 <p>The company was using a polymoprhic pivot table called taggables to manage the relationship between a tag and any one of a number of different models.  However on the taggables table, they had a <code>submitted_by_id</code> field that they wanted to contain the id of the user who attached the tag. It wasn’t working properly and they asked me to fix it.</p>
 
@@ -104,7 +104,7 @@
 
 <p>One way around this is to listen for the events that eloquent fires off <em>(creating, created, updating, updated, etc)</em>, specifically the creating event, and use that to set the <code>submitted_by_id</code> to the authenticated users id.  This way existing tags won’t get updated, but newly created tags will have the propper <code>submitted_by_id</code>.  The problem is that Laravel doesn’t fire off events on a pivot table.</p>
 
-<p>It turns out, there is a method called <a href="https://laravel.com/docs/5.8/eloquent-relationships#defining-custom-intermediate-table-models" title="" target="_blank">using</a> that lets you define a model for your pivot table to use on the relationship.  This will allow Laravel to start firing off these events, and for us to start listening for them.</p>
+<p>It turns out, there is a method called <a href="https://laravel.com/docs/5.8/eloquent-relationships#defining-custom-intermediate-table-models" target="_blank">using</a> that lets you define a model for your pivot table to use on the relationship.  This will allow Laravel to start firing off these events, and for us to start listening for them.</p>
 
 <p>You need make sure that your pivot table model is either extending <code>Illuminate\Database\Eloquent\Relations\MorphPivot</code> or <code>Illuminate\Database\Eloquent\Relations\Pivot</code>.</p>
 
@@ -133,7 +133,7 @@ class TaggablePivot extends MorphPivot
 }
 </code></pre>
 
-<p>I ended up creating an <a href="https://laravel.com/docs/5.8/eloquent#observers" title="" target="_blank">observer</a> and registering it in <code>AppServiceProvider</code> <em>(this project ended up having a number of other events that needed to be listed for, otherwise I’d of just stuck it in the boot method on the model.)</em></p>
+<p>I ended up creating an <a href="https://laravel.com/docs/5.8/eloquent#observers" target="_blank">observer</a> and registering it in <code>AppServiceProvider</code> <em>(this project ended up having a number of other events that needed to be listed for, otherwise I’d of just stuck it in the boot method on the model.)</em></p>
 
 <pre><code class="language-php">&lt;?php
 
@@ -220,7 +220,7 @@ class TaggablePivotObserver
             <a href="https://builtwithjigsaw.com/" target="_blank">Built with Jigsaw</a>
         </span>
         <br><span class="small">
-            &copy; 2021 <a href="https://www.somehowitworks.com" target="_blank">Somehow It Works, LLC</a>
+            &copy; 2026 <a href="https://www.somehowitworks.com" target="_blank">Somehow It Works, LLC</a>
         </span>
     </footer>
 
