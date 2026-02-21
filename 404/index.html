@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Run Phinx Database Migrations With Codeception | Glenn Kimble Jr</title>
+    <title>Glenn Kimble Jr</title>
 
     <!-- Meta Tags Generated via http://heymeta.com -->
-<meta name="description" content="Learn how I run Phinx database migrations with my Codeception test suite.">
+<meta name="description" content="PHP and Laravel software engineer.">
 
 <!-- Google / Search Engine Tags -->
-<meta itemprop="name" content="Run Phinx Database Migrations With Codeception | Glenn Kimble Jr">
-<meta itemprop="description" content="Learn how I run Phinx database migrations with my Codeception test suite.">
+<meta itemprop="name" content="Glenn Kimble Jr">
+<meta itemprop="description" content="PHP and Laravel software engineer.">
 <meta itemprop="image" content="https://glennkimble.me/assets/images/avatar.jpg">
 
 <!-- Facebook Meta Tags -->
-<meta property="og:url" content="https://glennkimble.me/blog/run-phinx-database-migrations-with-codeception">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Run Phinx Database Migrations With Codeception | Glenn Kimble Jr">
-<meta property="og:description" content="Learn how I run Phinx database migrations with my Codeception test suite.">
+<meta property="og:url" content="https://glennkimble.me">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Glenn Kimble Jr">
+<meta property="og:description" content="PHP and Laravel software engineer.">
 <meta property="og:image" content="https://glennkimble.me/assets/images/avatar.jpg">
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Run Phinx Database Migrations With Codeception | Glenn Kimble Jr">
-<meta name="twitter:description" content="Learn how I run Phinx database migrations with my Codeception test suite.">
+<meta name="twitter:title" content="Glenn Kimble Jr">
+<meta name="twitter:description" content="PHP and Laravel software engineer.">
 <meta name="twitter:image" content="https://glennkimble.me/assets/images/avatar.jpg">
 
     <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
@@ -46,7 +46,7 @@
         <!-- Navigation -->
         <nav class="flex justify-center items-center gap-8 text-xs font-semibold uppercase tracking-widest mb-12">
             <a href="/" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Home</a>
-            <a href="/blog" class="text-accent border-b-2 border-accent pb-0.5" style="text-decoration:none;">Blog</a>
+            <a href="/blog" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Blog</a>
             <a href="/talks" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Talks</a>
             <a href="/uses" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Uses</a>
             <a href="/now" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Now</a>
@@ -76,135 +76,83 @@
 
         <!-- Page content -->
         <main>
-            <article>
-    <header class="mb-8">
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-            December 22, 2018 &middot;
-            <a href="mailto:glennkimble@yahoo.com" class="text-gray-500 dark:text-gray-400 hover:text-accent" style="text-decoration:none;">Glenn</a> &middot;
-            3 min read
-        </p>
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight">Run Phinx Database Migrations With Codeception</h2>
-    </header>
+            <div class="font-mono">
+    <div class="max-w-lg mx-auto">
 
-    <div class="prose prose-lg max-w-none dark:prose-invert">
-        <p>One of my legacy applications uses a mix of <a href="https://phinx.org/" target="_blank">Phinx</a> to handle my database migrations and <a href="https://codeception.com/" target="_blank">Codeception</a> to handle my acceptance testing suite. However I primarily develop in <a href="https://laravel.com/" target="_blank">Laravel</a> and have gotten a bit spoiled by their easy testing setup. When I run my test suite in Laravel it refreshes my testing database with the latest migrations. I wanted to acheive the same thing with Codeception.</p>
-
-<p>Codeception gives you the option <a href="https://codeception.com/docs/modules/Db" target="_blank">out of the box</a> to refresh your testing database when you run your test suite using a sql dump. This is convenient but I didn't want to have to create a new dump every time I updated my migrations, I'd rather it just work.</p>
-
-<p>It took me awhile but after enough digging I found all the information necessary to do this between the docs on both sites, and it's actually fairly easy. So I figured I'd compile the info here for anyone interested.</p>
-
-<hr />
-
-<p>Firstly, we want to add a new connection to our <code>enviornments</code> array in our <code>phinx.yml</code> file. I call the connection <code>testing</code> and supply it with the credentials for my testing database.</p>
-
-<p>Phinx accepts either a <code>phinx.yml</code> file or a <code>phinx.php</code> file. I go the php route so that I can make use of <code>Dotenv</code> for environment variables. You can use whichever format works for you.</p>
-
-<pre><code class="language-php">&lt;?php
-
-require 'vendor/autoload.php';
-
-$dotenv = new Dotenv\Dotenv(__DIR__);
-$dotenv-&gt;load();
-
-return [
-    'paths' =&gt; [
-        'migrations' =&gt; '%%PHINX_CONFIG_DIR%%/db/migrations',
-        'seeds' =&gt; '%%PHINX_CONFIG_DIR%%/db/seeds',
-    ],
-    'environments' =&gt; [
-        'default_database' =&gt; getenv('APP_ENV'),
-        'default_migration_table' =&gt; 'phinxlog',
-        'local' =&gt; [
-            'adapter' =&gt; 'mysql',
-            'host' =&gt; getenv('DB_HOST'),
-            'name' =&gt; getenv('DB_DATABASE'),
-            'user' =&gt; getenv('DB_USERNAME'),
-            'pass' =&gt; getenv('DB_PASSWORD'),
-            'port' =&gt; 3306,
-            'charset' =&gt; 'utf8',
-            'collation' =&gt; 'utf8_unicode_ci',
-        ],
-        'testing' =&gt; [
-            'adapter' =&gt; 'mysql',
-            'host' =&gt; getenv('DB_TESTING_HOST'),
-            'name' =&gt; getenv('DB_TESTING_DATABASE'),
-            'user' =&gt; getenv('DB_TESTING_USERNAME'),
-            'pass' =&gt; getenv('DB_TESTING_PASSWORD'),
-            'port' =&gt; 3306,
-            'charset' =&gt; 'utf8',
-            'collation' =&gt; 'utf8_unicode_ci',
-        ]
-    ],
-];
-</code></pre>
-
-<p>In the <code>enviornments</code> array you would probably want to add in another array for production as well. But for the sake of this post all we really need is our testing connection.</p>
-
-<p>Next you'll want to open up and modify your <code>tests/_support/Helper/Acceptance.php</code> file.</p>
-
-<pre><code class="language-php">&lt;?php
-
-namespace Helper;
-
-use Phinx\Console\PhinxApplication;
-use Symfony\Component\Console\Input\StringInput;
-use Symfony\Component\Console\Output\NullOutput;
-
-class Acceptance extends \Codeception\Module
-{
-    public function _before($settings = [])
-    {
-        $app = new PhinxApplication();
-        $app-&gt;setAutoExit(false);
-        $app-&gt;run(new StringInput('rollback -e testing -t 0'), new NullOutput());
-        $app-&gt;run(new StringInput('migrate -e testing'), new NullOutput());
-        $app-&gt;run(new StringInput('seed -e testing'), new NullOutput());
-    }
-}
-</code></pre>
-
-<p>The <code>-e testing</code> is the important thing to note here, as it instructs Phinx to use our testing environment we setup. Also noteworthy is the <code>-t 0</code> flag at the end of the rollback command, this tells Phinx to rollback all of your database migrations and start from scratch.</p>
-
-<hr />
-
-<p>That's pretty much it. Simple right?</p>
-    </div>
-</article>
-
-<div class="mt-12 bg-green-50 dark:bg-green-950 border border-green-100 dark:border-green-900 rounded-xl p-8 text-center">
-    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">Join my mailing list</h2>
-    <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Stay up to date on whatever cool stuff I'm working on.</p>
-
-    <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645"
-          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
-          class="validate" target="_blank" novalidate>
-
-        <div id="mc_embed_signup_scroll" class="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
-            <input type="email" placeholder="your@email.com" name="EMAIL"
-                   class="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 rounded-lg text-sm focus:outline-none focus:border-accent"
-                   id="mce-EMAIL" required>
-
-            <div id="mce-responses">
-                <div class="response" id="mce-error-response" style="display:none"></div>
-                <div class="response" id="mce-success-response" style="display:none"></div>
-            </div>
-
-            <!-- Anti-spam honeypot -->
-            <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                <input type="text" name="b_0cbea9b9a2f478ac4ac443fe2_cbc836c645" tabindex="-1" value="">
-            </div>
-
-            <button type="submit" name="subscribe"
-                    class="px-6 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:opacity-90 cursor-pointer">
-                Subscribe
-            </button>
+        
+        <div class="flex items-center gap-3 mb-0">
+            <div class="h-8 w-8 rounded-full bg-accent shrink-0"></div>
+            <div class="h-3 flex-1 bg-accent rounded-r"></div>
         </div>
-    </form>
 
-    <a href="https://us19.campaign-archive.com/home/?u=0cbea9b9a2f478ac4ac443fe2&id=cbc836c645"
-       target="_blank" class="text-xs text-gray-500 dark:text-gray-400 hover:text-accent mt-4 inline-block">
-        View past newsletters
-    </a>
+        
+        <div class="border-x border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 px-8 py-7">
+
+            
+            <div class="flex items-baseline justify-between mb-6">
+                <span class="text-[10px] text-accent uppercase tracking-[0.2em]">Starfleet Computer · LCARS</span>
+                <span class="text-[10px] text-gray-400 dark:text-gray-500">v2.404</span>
+            </div>
+
+            
+            <div class="mb-5">
+                <p class="text-6xl font-bold text-accent leading-none mb-2">404</p>
+                <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-widest">
+                    Unable to comply<span class="animate-pulse text-accent ml-px">▮</span>
+                </p>
+            </div>
+
+            <div class="h-px bg-gray-200 dark:bg-gray-700 mb-5"></div>
+
+            
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-5">
+                The requested coordinates do not exist in this sector of known space.
+                The target may have entered a temporal anomaly, been assimilated by the Borg,
+                or simply never existed in this timeline.
+            </p>
+
+            <div class="h-px bg-gray-200 dark:bg-gray-700 mb-5"></div>
+
+            
+            <div class="space-y-1.5 text-xs mb-5">
+                                <div class="flex gap-3">
+                    <span class="text-accent w-24 shrink-0">STARDATE</span>
+                    <span class="text-gray-500 dark:text-gray-400">2026.51</span>
+                </div>
+                                <div class="flex gap-3">
+                    <span class="text-accent w-24 shrink-0">STATUS</span>
+                    <span class="text-gray-500 dark:text-gray-400">PAGE NOT FOUND</span>
+                </div>
+                                <div class="flex gap-3">
+                    <span class="text-accent w-24 shrink-0">SHIELDS</span>
+                    <span class="text-gray-500 dark:text-gray-400">NOMINAL</span>
+                </div>
+                                <div class="flex gap-3">
+                    <span class="text-accent w-24 shrink-0">PHASERS</span>
+                    <span class="text-gray-500 dark:text-gray-400">STANDING BY</span>
+                </div>
+                                <div class="flex gap-3">
+                    <span class="text-accent w-24 shrink-0">WARP CORE</span>
+                    <span class="text-gray-500 dark:text-gray-400">STABLE</span>
+                </div>
+                            </div>
+
+            <div class="h-px bg-gray-200 dark:bg-gray-700 mb-5"></div>
+
+            
+            <a href="/" class="text-xs uppercase tracking-widest text-accent hover:underline">
+                &rsaquo;&rsaquo; Engage — Return to Known Space
+            </a>
+
+        </div>
+
+        
+        <div class="flex items-center gap-3 mt-0">
+            <div class="h-3 flex-1 bg-gray-200 dark:bg-gray-700 rounded-l"></div>
+            <div class="h-5 w-20 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        </div>
+
+    </div>
 </div>
         </main>
 

@@ -1,0 +1,71 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Glenn Kimble Jr</title>
+        <link>https://glennkimble.me</link>
+        <description>PHP and Laravel software engineer.</description>
+        <atom:link href="https://glennkimble.me/feed.xml" rel="self" type="application/rss+xml"/>
+                <item>
+            <title>Using Laravel Assertions in Codeception</title>
+            <link>https://glennkimble.me/blog/using-laravel-assertions-in-codeception</link>
+            <description><![CDATA[If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familiar Laravel testing assertions. In this article, we&#039;ll dive into how to do exactly that.]]></description>
+            <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/using-laravel-assertions-in-codeception</guid>
+        </item>
+                <item>
+            <title>Implicit Route Model Binding</title>
+            <link>https://glennkimble.me/blog/implicit-route-model-binding</link>
+            <description><![CDATA[Implicit route model binding was introduced way back in 2015 with Laravel 5.2, however all these years later I still find apps out in the wild doing things the hard way.]]></description>
+            <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/implicit-route-model-binding</guid>
+        </item>
+                <item>
+            <title>2019 Year in Review</title>
+            <link>https://glennkimble.me/blog/2019-year-in-review</link>
+            <description><![CDATA[As 2019 comes to a close, I&#039;d like to take some time to look back on how it all went down.]]></description>
+            <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/2019-year-in-review</guid>
+        </item>
+                <item>
+            <title>Keeping Your Tests Clean</title>
+            <link>https://glennkimble.me/blog/keeping-your-tests-clean</link>
+            <description><![CDATA[It’s no secret that as developers we spend more time reading code than writing code and as such we understand the importance of keeping our code clean. However, one area we tend to fall behind on in this endeavor is our test files.]]></description>
+            <pubDate>Thu, 10 Oct 2019 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/keeping-your-tests-clean</guid>
+        </item>
+                <item>
+            <title>ESLint for Vue.js in Sublime Text 3</title>
+            <link>https://glennkimble.me/blog/eslint-for-vuejs-in-sublime-text-3</link>
+            <description><![CDATA[How I setup linting tools for Vue.js in Sublime Text 3]]></description>
+            <pubDate>Sat, 06 Jul 2019 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/eslint-for-vuejs-in-sublime-text-3</guid>
+        </item>
+                <item>
+            <title>Listen for events fired from pivot tables in Laravel</title>
+            <link>https://glennkimble.me/blog/listen-to-events-from-pivot-tables-in-laravel</link>
+            <description><![CDATA[The problem is that Laravel doesn’t fire off events on a pivot table. However I was able to solve this with the using method.]]></description>
+            <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/listen-to-events-from-pivot-tables-in-laravel</guid>
+        </item>
+                <item>
+            <title>2018 Year in Review</title>
+            <link>https://glennkimble.me/blog/2018-year-in-review</link>
+            <description><![CDATA[As 2018 comes to a close, I&#039;d like to take some time to plan out a few goals for 2019]]></description>
+            <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/2018-year-in-review</guid>
+        </item>
+                <item>
+            <title>Run Phinx Database Migrations With Codeception</title>
+            <link>https://glennkimble.me/blog/run-phinx-database-migrations-with-codeception</link>
+            <description><![CDATA[Learn how I run Phinx database migrations with my Codeception test suite.]]></description>
+            <pubDate>Sat, 22 Dec 2018 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/run-phinx-database-migrations-with-codeception</guid>
+        </item>
+                <item>
+            <title>Letter of Resignation</title>
+            <link>https://glennkimble.me/blog/letter-of-resignation</link>
+            <description><![CDATA[Even though I’d been planning this for some time, I was nervous sending off that email]]></description>
+            <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/letter-of-resignation</guid>
+        </item>
+            </channel>
+</rss>
