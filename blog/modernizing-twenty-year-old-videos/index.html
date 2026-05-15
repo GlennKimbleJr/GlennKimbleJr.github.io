@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en" class="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Programmatically Modernizing 20-Year-Old Videos | Glenn Kimble Jr</title>
+
+    <!-- Meta Tags Generated via http://heymeta.com -->
+<meta name="description" content="A retrospective on rescuing 21 anime music videos I made in high school — through RealMedia, AI upscalers, and one stubborn YouTube audio glitch that took days to diagnose.">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Programmatically Modernizing 20-Year-Old Videos | Glenn Kimble Jr">
+<meta itemprop="description" content="A retrospective on rescuing 21 anime music videos I made in high school — through RealMedia, AI upscalers, and one stubborn YouTube audio glitch that took days to diagnose.">
+<meta itemprop="image" content="https://glennkimble.me/assets/images/avatar.jpg">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://glennkimble.me/blog/modernizing-twenty-year-old-videos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Programmatically Modernizing 20-Year-Old Videos | Glenn Kimble Jr">
+<meta property="og:description" content="A retrospective on rescuing 21 anime music videos I made in high school — through RealMedia, AI upscalers, and one stubborn YouTube audio glitch that took days to diagnose.">
+<meta property="og:image" content="https://glennkimble.me/assets/images/avatar.jpg">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Programmatically Modernizing 20-Year-Old Videos | Glenn Kimble Jr">
+<meta name="twitter:description" content="A retrospective on rescuing 21 anime music videos I made in high school — through RealMedia, AI upscalers, and one stubborn YouTube audio glitch that took days to diagnose.">
+<meta name="twitter:image" content="https://glennkimble.me/assets/images/avatar.jpg">
+
+    <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+    <link rel="alternate" type="application/rss+xml" title="Glenn Kimble Jr" href="https://glennkimble.me/feed.xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script>const t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}</script>
+        <link rel="stylesheet" href="/assets/build/assets/main-DvzdtCjX.css">
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 antialiased">
+
+    <div class="max-w-3xl mx-auto px-6 py-10">
+
+        <!-- Navigation -->
+        <nav class="flex justify-center items-center gap-8 text-xs font-semibold uppercase tracking-widest mb-12">
+            <a href="/" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Home</a>
+            <a href="/blog" class="text-accent border-b-2 border-accent pb-0.5" style="text-decoration:none;">Blog</a>
+            <a href="/talks" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Talks</a>
+            <a href="/uses" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Uses</a>
+            <a href="/now" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" style="text-decoration:none;">Now</a>
+            <button id="theme-toggle" aria-label="Toggle dark mode"
+                    class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+                <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+                </svg>
+                <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.415-2.121-2.122zM1 11h3v2H1v-2zm19 0h3v2h-3v-2zM4.929 20.485l-1.414-1.414 2.121-2.121 1.414 1.414-2.121 2.121zM18.364 7.05l-1.414-1.414 2.121-2.121 1.415 1.414-2.122 2.121z"/>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <a href="/">
+                <img src="/assets/images/avatar.jpg" alt="Glenn Kimble Jr" class="avatar mx-auto mb-5">
+            </a>
+            <h1 class="text-2xl font-bold">
+                <a href="/" class="text-gray-900 dark:text-gray-100 hover:text-accent" style="text-decoration:none;">Glenn Kimble Jr</a>
+            </h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 tracking-wide">Software Engineer</p>
+        </header>
+
+        <hr class="border-gray-100 dark:border-gray-800 mb-10">
+
+        <!-- Page content -->
+        <main>
+            <article>
+    <header class="mb-8">
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+            May 14, 2026 &middot;
+            <a href="mailto:glennkimble@yahoo.com" class="text-gray-500 dark:text-gray-400 hover:text-accent" style="text-decoration:none;">Glenn</a> &middot;
+            16 min read
+        </p>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight">Programmatically Modernizing 20-Year-Old Videos</h2>
+    </header>
+
+    <div class="prose prose-lg max-w-none dark:prose-invert">
+        <div class="tldr-block">
+<strong>TLDR —</strong> 21 anime music videos from 2002–2008, mostly RealMedia at 320×240. Converted to MP4 with ffmpeg, AI-upscaled with Real-ESRGAN, uploaded to YouTube — where they immediately developed audio dropouts every ~45 seconds that weren't in the source files. Three days and thirteen dead-end theories later, the fix was passing the audio through ffmpeg's <code>atempo</code> filter at factor 1.0. That filter silently rewrites sample-level timing through a process called WSOLA windowing, which apparently broke whatever pattern YouTube's transcoder was reacting to. All 21 now upload clean.
+</div>
+
+<h3>How it started</h3>
+
+<p>Back in high school, one of my main hobbies was running a Dragon Ball fan site that featured anime music videos — AMVs — made by me and others in that community. I spent a ridiculous amount of time in the early 2000s editing these things together — learning Adobe Premiere 6, RealProducer, VirtualDub, AVISynth, and other tools — and uploading the results to whatever corners of the internet would have them. (Web hosting was its own challenge back then — finding a host that wouldn't pull your videos for blowing past a monthly transfer cap was a recurring side quest.)</p>
+
+<p>The hobby fizzled out after I graduated. Twenty years went by. The files sat on hard drive after hard drive, mostly forgotten. Then my little brother asked if I'd ever put them online so he could see them again. Easy afternoon project, I figured. After all, I'd done this once before — probably ten years ago I'd uploaded all the videos to YouTube in their original <code>.rm</code> format and they played fine. Looked like garbage at 320×240 stretched across a modern monitor, sure, but it worked.</p>
+
+<p>So my first move was to do the same thing again: grab the original <code>.rm</code> files, upload one, see how it looked. It uploaded. YouTube processed it. I hit play — and the audio was full of stutters. Sharp, obvious skips every ~45 seconds, none of which were in the source file. Whatever YouTube does to ingest video had clearly changed in the intervening years, and not in a way that was friendly to my sloppy early-2000s encoding. So I left it alone for a few months — it wasn't worth the trouble. That changed when some online friends started organizing a 2000's AMV Twitch stream — between that and my brother still waiting to see the videos, it finally felt worth the effort to fix properly.</p>
+
+<p>The whole process ended up taking about three days of long hours, late nights, and real effort — and I came out the other side knowing a little more about codecs, frame rates, and YouTube's transcoding pipeline than I ever expected to learn.</p>
+
+<h3>The state of the originals</h3>
+
+<p>The collection: 21 AMVs from 2002–2008, mostly in <strong>RealMedia</strong> (<code>.rm</code>) format at a <strong>320×240</strong> resolution. The rest were a mix of <code>.avi</code> and <code>.mpg</code> with one straggler <code>.mp4</code>.</p>
+
+<p>For anyone who didn't live through the early 2000s internet: 320×240 was standard. RealMedia was a popular format for streaming at the time. RealPlayer was the tool you watched this stuff in. If you wanted to share a 200 MB AMV at original quality, you didn't — you encoded it down to ~10 MB and accepted the quality hit, because nobody was waiting hours to download anything bigger.</p>
+
+<p>To understand how these <code>.rm</code> files ended up in such rough shape, it helps to trace the whole pipeline. The anime footage I was working from was already low quality before I even started editing — VHS captures at best, sketchy internet clips at worst. Cartoon Network rips, fansubs, whatever I could find.</p>
+
+<p>I'd take all of that and import it into Premiere 6 — sometimes after running it through VirtualDub or AVISynth first, just to coerce it into a format Premiere wouldn't crash on — edit the AMV together, and export the whole project as one uncompressed AVI file. <em>That</em> AVI was the file I'd then pipe into RealProducer Plus 8.5, with settings I absolutely did not understand, optimized for "DSL/Cable Modem (350 Kbps)" delivery.</p>
+
+<p>By 2026 standards, these are unwatchable.</p>
+
+<h3>The goal</h3>
+
+<p>Three things I wanted to get done:</p>
+
+<ol>
+<li>Convert everything to a modern format (MP4, H.264, AAC).</li>
+<li>AI-upscale the low-res ones so they look acceptable on a current monitor.</li>
+<li>Upload them all to YouTube without the audio dropouts that wrecked an earlier attempt with the raw <code>.rm</code> files.</li>
+</ol>
+
+<p>The first one was a one-liner. The other two are the rest of this post.</p>
+
+<h3>Phase 1: A boring ffmpeg loop</h3>
+
+<p>Getting all 21 files into MP4 was a single <code>ffmpeg</code> loop (<code>brew install ffmpeg</code> if you need it). H.264 video, AAC audio, faststart flag for fast playback. No drama — ffmpeg reads <code>.rm</code>, <code>.avi</code>, and <code>.mpg</code> without any special flags.</p>
+
+<pre><code class="language-bash">for f in "videos_original/"*; do
+  name=$(basename "$f")
+  base="${name%.*}"
+  out="videos_fixed/${base}.mp4"
+  ffmpeg -y -nostdin -i "$f" \
+    -c:v libx264 -profile:v high -preset medium -crf 20 -pix_fmt yuv420p \
+    -c:a aac -profile:a aac_low -b:a 192k \
+    -movflags +faststart \
+    "$out"
+done
+</code></pre>
+
+<p><a href="https://trac.ffmpeg.org/wiki/Encode/H.264">ffmpeg's wiki</a> is a decent reference if you want to understand what those flags are doing.</p>
+
+<p>The interesting stuff starts once you decide you want to make these look better than 320×240.</p>
+
+<h3>Phase 2: AI upscaling</h3>
+
+<p>For anime-style content, <strong>Real-ESRGAN</strong> with the <code>realesr-animevideov3</code> model is the go-to. It's trained specifically on anime video and runs on an M1's built-in GPU — no external graphics card required. About 11 frames/second on a 320×240 source at 2× scale — call it 2.4× realtime.</p>
+
+<p>The pipeline is conceptually simple:</p>
+
+<ol>
+<li>Extract every frame from the source video as a numbered PNG.</li>
+<li>Run Real-ESRGAN on the folder of PNGs.</li>
+<li>Reassemble the upscaled PNGs back into a video, with the original audio copied over.</li>
+</ol>
+
+<p>Naive first pass — step 1 is <code>ffmpeg</code>, extracting each frame as a numbered PNG:</p>
+
+<pre><code class="language-bash">input="videos_fixed/your-video.mp4"
+ffmpeg -i "$input" frames/%06d.png
+</code></pre>
+
+<p>Step 2 is Real-ESRGAN. Grab the prebuilt <code>realesrgan-ncnn-vulkan</code> binary from the <a href="https://github.com/xinntao/Real-ESRGAN/releases">Real-ESRGAN releases page</a> and unzip it somewhere like <code>~/.local/share/realesrgan/</code>. One detail worth knowing: the binary looks for its <code>models/</code> folder relative to wherever it's invoked from, so the cleanest way to run it is to <code>cd</code> into its install directory first.</p>
+
+<pre><code class="language-bash">work="$PWD"
+
+( cd ~/.local/share/realesrgan \
+  &amp;&amp; ./realesrgan-ncnn-vulkan \
+       -i "$work/frames" \
+       -o "$work/frames_up" \
+       -n realesr-animevideov3 \
+       -s 2 -f png )
+</code></pre>
+
+<p>Step 3 is <code>ffmpeg</code> again, reassembling the upscaled PNGs into a video and pulling audio straight off the original file. NTSC video is 29.97 fps, so I figured that was a safe default:</p>
+
+<pre><code class="language-bash">ffmpeg -framerate 29.97 -i frames_up/%06d.png \
+       -i "$input" -map 0:v:0 -map 1:a:0 \
+       -c:v libx264 -profile:v high -preset medium -crf 18 -pix_fmt yuv420p \
+       -c:a copy \
+       -movflags +faststart \
+       output.mp4
+</code></pre>
+
+<p>I was wrong.</p>
+
+<h4>Frame rate trauma</h4>
+
+<p>The first time I ran this end-to-end, the audio and video looked fine for the first few seconds and then progressively drifted out of sync. By the end of a one-minute clip, the music was about five seconds ahead of the visuals.</p>
+
+<p>The culprit: <strong>variable framerate (VFR)</strong> sources. The frame rate ffmpeg reports is just an average — the source might <em>say</em> 29.97 fps but actually hold individual frames for different durations across the timeline. When you decompose video into a sequence of still PNGs, that timing information evaporates. The PNGs are just numbered files; there's nothing in them that says "this one should be held for 33 ms but that one for 50 ms."</p>
+
+<p>If you reassemble at a constant 29.97 fps, the video timeline ends up shorter than the audio timeline by exactly however many frames the source was "holding longer" than the reported rate. Hence the drift.</p>
+
+<p>The fix is to force constant framerate (CFR) at both extraction and reassembly, and to use the source's actual frame rate rather than guessing at 29.97. <code>ffprobe</code> pulls the rate out of the source, then both extract and reassemble use it explicitly:</p>
+
+<pre><code class="language-bash"># Probe the source's frame rate (e.g. "30000/1001" for standard NTSC)
+rate=$(ffprobe -v error -select_streams v:0 \
+  -show_entries stream=r_frame_rate -of csv=p=0 "$input")
+
+# Extract with that rate, forcing CFR
+ffmpeg -i "$input" -r "$rate" -fps_mode cfr frames/%06d.png
+
+# Reassemble at the same rate, also forcing CFR
+ffmpeg -framerate "$rate" -i frames_up/%06d.png \
+       -i "$input" -map 0:v:0 -map 1:a:0 \
+       -c:v libx264 -profile:v high -preset medium -crf 18 -pix_fmt yuv420p \
+       -fps_mode cfr -c:a copy \
+       -movflags +faststart \
+       output.mp4
+</code></pre>
+
+<p>ffmpeg duplicates frames where the source was holding one longer, padding the timeline out to the true duration. Reassemble at the same rate and everything stays in sync.</p>
+
+<p>Probing the collection turned up an entertaining variety of frame rates: standard 29.97, standard 23.976, exactly 24, exactly 30, a non-NTSC <code>982057/32768</code> (~29.9712) inherited from RealProducer's internal sample-counting math, and one outlier at <code>117/4</code> = exactly <strong>29.25 fps</strong> that I can only assume came from some Premiere export setting I no longer remember.</p>
+
+<h4>The 4× mistake</h4>
+
+<p>One source was 240×180 — the smallest in the collection. At 2× it became 480×360, which is smaller than every other output. I wanted parity, so I tried 4× expecting 960×720.</p>
+
+<p>The 4× output looked <strong>worse</strong> than the 2×. The model, given more freedom, hallucinated more aggressively. Edges got sharper but also more synthetic. Fine textures developed an over-processed look.</p>
+
+<p>What actually worked was non-AI: take the 2× upscale, then plain bicubic resize from 480×360 to 640×480. No distortion, no over-processing, just bigger pixels of the AI-upscaled image.</p>
+
+<p><strong>Lesson:</strong> AI upscalers aren't "more is better." For heavily compressed, low-bitrate source material, a higher scale factor can introduce artifacts that look worse than a plain resize of a lower-scale output.</p>
+
+<h3>Phase 3: Preparing for YouTube</h3>
+
+<p>With the MP4s in hand, I had reason to think the YouTube dropout problem from the failed <code>.rm</code> upload was already on its way out. RealMedia's quirky variable-timestamp audio packets had been my prime suspect, and the re-encoded MP4s are clean CFR with well-behaved AAC audio — re-encoded to 48 kHz stereo AAC. A re-upload of <em>those</em> should — by every reasonable theory — sail through YouTube's pipeline without a problem. So I uploaded one.</p>
+
+<p>The audio still had dropouts.</p>
+
+<p>At 0:44, 1:29, 2:14, and 2:58. Roughly every 45 seconds. About 90 ms of true digital silence each — not just music dipping, <em>actual</em> silence dropping the level to -100 dB. Locally the file played perfectly. Only YouTube's transcoded version had the gaps — confirmed by downloading YouTube's processed version with <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> and comparing it directly against the local file.</p>
+
+<p>So began the rabbit hole.</p>
+
+<h3>Phase 4: Why does YouTube hate my audio?</h3>
+
+<p>I was working through this with Claude Code (Anthropic's Opus 4.7) the whole way. It was hugely useful for brainstorming diagnostics and chewing through ffprobe output, but I had to push back hard at multiple points. Claude kept circling back to two non-answers — either "accept that YouTube does this, there's nothing you can do" or "it's probably Content ID, give up." Both were easy to disqualify with the same argument: if either were true at this level, it'd be a massive, well-documented problem in the creator community. It isn't. We ended up back at those same dead-ends more than once before finally getting past them.</p>
+
+<p>One thing that <em>did</em> help shape the investigation: early on we noticed the gaps landed at consistent ~44.69-second intervals, machine-precise across re-uploads of the same content. That kind of regularity strongly implies a chunk boundary somewhere in YouTube's pipeline. Google even has a patent (<a href="https://patents.google.com/patent/US9338467B1">US9338467B1</a>) describing a parallel transcoding pipeline that splits audio and video into chunks for distributed processing. So most of the theories that follow are really asking the same question from different angles: <em>what about my files is making YouTube's chunk boundaries misbehave?</em></p>
+
+<p>The investigation moved through thirteen distinct theories before getting anywhere useful:</p>
+
+<ol>
+<li><strong>A/V duration mismatch</strong> — re-encoded with matched durations, didn't help.</li>
+<li><strong>Non-standard frame rate</strong> — re-encoded at exactly 30000/1001, didn't help.</li>
+<li><strong>Irregular keyframes</strong> — regular GOPs at 1 s and 2 s intervals, didn't help.</li>
+<li><strong>AAC ingestion bug, allegedly fixed by uploading lossless audio</strong> (old internet wisdom) — FLAC source, same gaps.</li>
+<li><strong>Container format</strong> — MKV, same gaps.</li>
+<li><strong>Resolution / aspect handling</strong> — 720p, same gaps, plus content got squished.</li>
+<li><strong>Fixed-timer chunker in YouTube's pipeline</strong> — adding 2 s of black pre-roll shifted the gaps by exactly 2 s along with the content, so they're content-aligned, not output-time-aligned.</li>
+<li><strong>Visual scene detection</strong> — three of the four moments had scene cuts, but the fourth was the same character close-up before and after.</li>
+<li><strong>Sample-level audio splices from old editing software</strong> — peak-to-peak jumps at those moments were within normal music range; no detectable splice clicks.</li>
+<li><strong>Spectral / loudness / dynamic-range anomalies at the source</strong> — RMS, peak, crest factor, stereo correlation, DC offset all statistically indistinguishable from random reference points elsewhere.</li>
+<li><strong>My "silence" measurements were actually natural quiet moments</strong> — at 5 ms RMS resolution the source had continuous music between -15 and -22 dB while the YouTube output dropped to -100 dB.</li>
+<li><strong>YouTube Content ID</strong> — the same song uploaded by the artist's official channel has none of these gaps.</li>
+<li><strong>AAC priming silence at parallel-chunk boundaries</strong> — would affect every upload, doesn't.</li>
+</ol>
+
+<p>A handful of those theories — particularly the ones Claude kept defaulting to (Content ID, "just accept it") — got disqualified by the same reasoning mentioned earlier. Mass-uploaded RealMedia, 4:3 vintage TV captures, low-bitrate sources — these are all common on YouTube. The artifact would be widely reported. It isn't. So whatever was triggering it had to be specific to <em>these files</em>.</p>
+
+<p>The rest got ruled out by testing — re-encode with that one variable changed, re-upload, and check whether the gaps moved or disappeared.</p>
+
+<p>A second-file test (different song, different anime, different length) showed the artifact landed in <strong>nearly the same absolute output positions</strong> — within 50 ms. That ruled out <em>specific</em> content as a trigger — neither the specific visuals nor audio mattered — and pointed at some shared property of how these files are encoded.</p>
+
+<h4>The breakthrough</h4>
+
+<p>I produced four test files from the same source, each changing exactly one variable:</p>
+
+<table>
+<thead>
+<tr>
+  <th>Test</th>
+  <th>Variable changed</th>
+  <th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>Frame rate forced to standard NTSC</td>
+  <td><strong>still glitched</strong></td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>Audio bitrate raised to 384 kbps</td>
+  <td><strong>still glitched</strong></td>
+</tr>
+<tr>
+  <td>3a</td>
+  <td>Audio time-stretched by 0.5% (<code>atempo=1.005</code>)</td>
+  <td><strong>clean</strong></td>
+</tr>
+<tr>
+  <td>3b</td>
+  <td>Audio re-encoded AAC → Opus → AAC</td>
+  <td><strong>still glitched</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>3a vs 3b is the diagnostic. Both re-encode the audio waveform. The difference: 3a changes sample-level <em>timing</em>; 3b changes frequency-domain content but preserves timing. 3a is clean, 3b isn't. So the trigger is timing-related, not frequency-related.</p>
+
+<p>Three follow-ups narrowed it further:</p>
+
+<ul>
+<li><code>atempo=1.0</code> (the filter, but at no speed change) → <strong>clean</strong></li>
+<li><code>anull</code> (true no-op pass-through) → <strong>still glitched</strong></li>
+<li><code>aresample=48000</code> (resampler at the same rate) → <strong>still glitched</strong></li>
+</ul>
+
+<p><code>anull</code> and <code>aresample</code> don't do <strong>WSOLA</strong> windowing. <code>atempo</code> does. WSOLA — Waveform Similarity Overlap-Add — breaks audio into overlapping windows, finds similar waveform sections across them, and overlap-adds with windowing functions. In plain English: <em>"it chops the audio into overlapping chunks, finds the parts that look most alike where the chunks meet, and stitches them back together with a soft crossfade."</em> Even at factor 1.0 with no actual speed change, the windowing modifies sample-level details <em>just slightly</em> in a way that's perceptually identical but breaks whatever YouTube's transcoder was reacting to.</p>
+
+<p>I still don't know what YouTube is actually reacting to in the source audio. The best guess is the chunked parallel-transcoding pipeline from earlier, with imperfect handling of certain sample-level patterns at chunk boundaries. The fix works. The reason it works stays a mystery.</p>
+
+<h4>The drift problem</h4>
+
+<p>There was one catch: <code>atempo=1.0</code> shortens long-file audio by ~430 ms due to a precision artifact in ffmpeg's WSOLA flush behavior. That's enough for audio and video to drift visibly out of sync by the end of a song — a huge problem.</p>
+
+<p>The fix is to overcompensate. Instead of <code>atempo=1.0</code>, use <code>atempo = D / (D + L)</code>, where <code>L</code> is the amount of loss for that file. For my original test file, that's <code>204.776 / 205.206 = 0.99790</code>.</p>
+
+<p>But <code>L</code> isn't constant. On short files (~25 s) it's only 22 ms. On one file <code>atempo=1.0</code> actually <em>added</em> 9 ms instead of subtracting. So the fix became: measure each file individually — a two-pass ffmpeg run that measures the loss for each specific file, then applies the compensation in pass two:</p>
+
+<pre><code class="language-bash">SRC="INPUT.mp4"
+OUT="INPUT [yt-fix].mp4"
+
+# Pass 1: measure atempo's actual effect on this specific file
+AUDIO_DUR=$(ffprobe -v error -select_streams a:0 \
+  -show_entries stream=duration -of default=nokey=1:noprint_wrappers=1 "$SRC")
+ffmpeg -y -i "$SRC" -vn -af "atempo=1.0" \
+  -c:a aac -profile:a aac_low -b:a 192k -ar 48000 -ac 2 \
+  /tmp/measure.m4a 2&gt;/dev/null
+LOSS_DUR=$(ffprobe -v error -select_streams a:0 \
+  -show_entries stream=duration -of default=nokey=1:noprint_wrappers=1 /tmp/measure.m4a)
+LOSS=$(awk -v a="$AUDIO_DUR" -v b="$LOSS_DUR" 'BEGIN{printf "%.6f", a - b}')
+FACTOR=$(awk -v d="$AUDIO_DUR" -v l="$LOSS" 'BEGIN{printf "%.6f", d / (d + l)}')
+
+# Pass 2: apply atempo with the computed compensation factor
+ffmpeg -y -i "$SRC" \
+  -c:v copy \
+  -af "atempo=$FACTOR" \
+  -c:a aac -profile:a aac_low -b:a 192k -ar 48000 -ac 2 \
+  -movflags +faststart \
+  "$OUT"
+</code></pre>
+
+<p>Run that against all 21 files and the A/V residuals (the leftover difference between audio and video durations after compensation) come in at ±7 ms — well below the threshold where a viewer would notice.</p>
+
+<p>All 21 upload to YouTube clean.</p>
+
+<h3>What I ended up with</h3>
+
+<ul>
+<li><strong>21 videos</strong>, about 50 minutes of content total</li>
+<li>Final resolutions ranging from 728×410 to 1366×768, all 16:9</li>
+<li>~2 hours of pure GPU time on an M1 for the upscale work</li>
+<li>Around 1 GB of output</li>
+</ul>
+
+<h3>Takeaways</h3>
+
+<p>If you find yourself doing this kind of work:</p>
+
+<ol>
+<li><strong>Probe everything per file, and force CFR when decomposing video.</strong> Frame rate, sample rate, channel count, aspect ratio — none of it is safe to assume. Image sequences carry no timing information of their own, so whatever rate you reassemble at becomes the truth. ffmpeg's defaults won't save you, and even sources that <em>look</em> uniform can carry weirdness baked in by the original encoder (RealProducer's <code>982057/32768</code>, for example).</li>
+<li><strong>AI upscaling isn't a knob to crank.</strong> Use the lowest scale that gives acceptable quality and compose with plain bicubic resize where you just need bigger pixels.</li>
+<li><strong>Verify the symptom is gone, not just the cause you assumed.</strong> I thought clean CFR MP4s would fix the YouTube dropouts because that's what the obvious cause looked like. It wasn't. The fix has to be checked against the actual symptom, not against your theory of where it came from.</li>
+</ol>
+
+<p>The videos are up on YouTube now. They look better than I had any right to expect.</p>
+
+<p>If you want to see the results — or just dip into some early-2000s AMV nostalgia — <a href="https://www.youtube.com/@PrinceMajinTrunksAMV">check out my AMV YouTube channel</a>.</p>
+    </div>
+</article>
+
+<div class="mt-12 bg-green-50 dark:bg-green-950 border border-green-100 dark:border-green-900 rounded-xl p-8 text-center">
+    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">Join my mailing list</h2>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Stay up to date on whatever cool stuff I'm working on.</p>
+
+    <form action="https://glennkimble.us19.list-manage.com/subscribe/post?u=0cbea9b9a2f478ac4ac443fe2&amp;id=cbc836c645"
+          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+          class="validate" target="_blank" novalidate>
+
+        <div id="mc_embed_signup_scroll" class="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
+            <input type="email" placeholder="your@email.com" name="EMAIL"
+                   class="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 rounded-lg text-sm focus:outline-none focus:border-accent"
+                   id="mce-EMAIL" required>
+
+            <div id="mce-responses">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>
+
+            <!-- Anti-spam honeypot -->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_0cbea9b9a2f478ac4ac443fe2_cbc836c645" tabindex="-1" value="">
+            </div>
+
+            <button type="submit" name="subscribe"
+                    class="px-6 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:opacity-90 cursor-pointer">
+                Subscribe
+            </button>
+        </div>
+    </form>
+
+    <a href="https://us19.campaign-archive.com/home/?u=0cbea9b9a2f478ac4ac443fe2&id=cbc836c645"
+       target="_blank" class="text-xs text-gray-500 dark:text-gray-400 hover:text-accent mt-4 inline-block">
+        View past newsletters
+    </a>
+</div>
+        </main>
+
+    </div>
+
+    <footer class="py-8 text-center border-t border-gray-100 dark:border-gray-800">
+        <div class="flex justify-center gap-5 items-center">
+    <a href="https://www.github.com/GlennKimbleJr" target="_blank" rel="noopener" aria-label="GitHub"
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+    </a>
+    <a href="https://www.linkedin.com/in/glennkimblejr/" target="_blank" rel="noopener" aria-label="LinkedIn"
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+    </a>
+    <a href="https://www.twitter.com/GlennKimbleJr" target="_blank" rel="noopener" aria-label="Twitter / X"
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+    </a>
+    <a href="https://www.youtube.com/GlennKimbleJr?sub_confirmation=1" target="_blank" rel="noopener" aria-label="YouTube"
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+    </a>
+    <a href="mailto:glennkimble@yahoo.com" aria-label="Email"
+       class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+    </a>
+</div>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
+            &copy; 2026 Glenn Kimble Jr
+        </p>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
+            <a href="https://builtwithjigsaw.com/" target="_blank" class="hover:text-accent">Built with Jigsaw</a>
+        </p>
+    </footer>
+
+    <script type="module" src="/assets/build/assets/main-BjTzDYbx.js"></script>
+
+</body>
+</html>

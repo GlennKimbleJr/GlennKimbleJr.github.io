@@ -5,6 +5,13 @@
         <description>PHP and Laravel software engineer.</description>
         <atom:link href="https://glennkimble.me/feed.xml" rel="self" type="application/rss+xml"/>
                 <item>
+            <title>Programmatically Modernizing 20-Year-Old Videos</title>
+            <link>https://glennkimble.me/blog/modernizing-twenty-year-old-videos</link>
+            <description><![CDATA[A retrospective on rescuing 21 anime music videos I made in high school — through RealMedia, AI upscalers, and one stubborn YouTube audio glitch that took days to diagnose.]]></description>
+            <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
+            <guid>https://glennkimble.me/blog/modernizing-twenty-year-old-videos</guid>
+        </item>
+                <item>
             <title>Using Laravel Assertions in Codeception</title>
             <link>https://glennkimble.me/blog/using-laravel-assertions-in-codeception</link>
             <description><![CDATA[If you&#039;re using Codeception as a testing framework for your Laravel app, you may find yourself wanting to use some of the familiar Laravel testing assertions. In this article, we&#039;ll dive into how to do exactly that.]]></description>
