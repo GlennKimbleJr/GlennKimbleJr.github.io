@@ -141,7 +141,7 @@
 done
 </code></pre>
 
-<p><a href="https://trac.ffmpeg.org/wiki/Encode/H.264">ffmpeg's wiki</a> is a decent reference if you want to understand what those flags are doing.</p>
+<p><a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank">ffmpeg's wiki</a> is a decent reference if you want to understand what those flags are doing.</p>
 
 <p>The interesting stuff starts once you decide you want to make these look better than 320×240.</p>
 
@@ -163,7 +163,7 @@ done
 ffmpeg -i "$input" frames/%06d.png
 </code></pre>
 
-<p>Step 2 is Real-ESRGAN. Grab the prebuilt <code>realesrgan-ncnn-vulkan</code> binary from the <a href="https://github.com/xinntao/Real-ESRGAN/releases">Real-ESRGAN releases page</a> and unzip it somewhere like <code>~/.local/share/realesrgan/</code>. One detail worth knowing: the binary looks for its <code>models/</code> folder relative to wherever it's invoked from, so the cleanest way to run it is to <code>cd</code> into its install directory first.</p>
+<p>Step 2 is Real-ESRGAN. Grab the prebuilt <code>realesrgan-ncnn-vulkan</code> binary from the <a href="https://github.com/xinntao/Real-ESRGAN/releases" target="_blank">Real-ESRGAN releases page</a> and unzip it somewhere like <code>~/.local/share/realesrgan/</code>. One detail worth knowing: the binary looks for its <code>models/</code> folder relative to wherever it's invoked from, so the cleanest way to run it is to <code>cd</code> into its install directory first.</p>
 
 <pre><code class="language-bash">work="$PWD"
 
@@ -233,7 +233,7 @@ ffmpeg -framerate "$rate" -i frames_up/%06d.png \
 
 <p>The audio still had dropouts.</p>
 
-<p>At 0:44, 1:29, 2:14, and 2:58. Roughly every 45 seconds. About 90 ms of true digital silence each — not just music dipping, <em>actual</em> silence dropping the level to -100 dB. Locally the file played perfectly. Only YouTube's transcoded version had the gaps — confirmed by downloading YouTube's processed version with <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> and comparing it directly against the local file.</p>
+<p>At 0:44, 1:29, 2:14, and 2:58. Roughly every 45 seconds. About 90 ms of true digital silence each — not just music dipping, <em>actual</em> silence dropping the level to -100 dB. Locally the file played perfectly. Only YouTube's transcoded version had the gaps — confirmed by downloading YouTube's processed version with <a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a> and comparing it directly against the local file.</p>
 
 <p>So began the rabbit hole.</p>
 
@@ -241,7 +241,7 @@ ffmpeg -framerate "$rate" -i frames_up/%06d.png \
 
 <p>I was working through this with Claude Code (Anthropic's Opus 4.7) the whole way. It was hugely useful for brainstorming diagnostics and chewing through ffprobe output, but I had to push back hard at multiple points. Claude kept circling back to two non-answers — either "accept that YouTube does this, there's nothing you can do" or "it's probably Content ID, give up." Both were easy to disqualify with the same argument: if either were true at this level, it'd be a massive, well-documented problem in the creator community. It isn't. We ended up back at those same dead-ends more than once before finally getting past them.</p>
 
-<p>One thing that <em>did</em> help shape the investigation: early on we noticed the gaps landed at consistent ~44.69-second intervals, machine-precise across re-uploads of the same content. That kind of regularity strongly implies a chunk boundary somewhere in YouTube's pipeline. Google even has a patent (<a href="https://patents.google.com/patent/US9338467B1">US9338467B1</a>) describing a parallel transcoding pipeline that splits audio and video into chunks for distributed processing. So most of the theories that follow are really asking the same question from different angles: <em>what about my files is making YouTube's chunk boundaries misbehave?</em></p>
+<p>One thing that <em>did</em> help shape the investigation: early on we noticed the gaps landed at consistent ~44.69-second intervals, machine-precise across re-uploads of the same content. That kind of regularity strongly implies a chunk boundary somewhere in YouTube's pipeline. Google even has a patent (<a href="https://patents.google.com/patent/US9338467B1" target="_blank">US9338467B1</a>) describing a parallel transcoding pipeline that splits audio and video into chunks for distributed processing. So most of the theories that follow are really asking the same question from different angles: <em>what about my files is making YouTube's chunk boundaries misbehave?</em></p>
 
 <p>The investigation moved through thirteen distinct theories before getting anywhere useful:</p>
 
@@ -373,7 +373,7 @@ ffmpeg -y -i "$SRC" \
 
 <p>The videos are up on YouTube now. They look better than I had any right to expect.</p>
 
-<p>If you want to see the results — or just dip into some early-2000s AMV nostalgia — <a href="https://www.youtube.com/@PrinceMajinTrunksAMV">check out my AMV YouTube channel</a>.</p>
+<p>If you want to see the results — or just dip into some early-2000s AMV nostalgia — <a href="https://www.youtube.com/@PrinceMajinTrunksAMV" target="_blank">check out my AMV YouTube channel</a>.</p>
     </div>
 </article>
 
